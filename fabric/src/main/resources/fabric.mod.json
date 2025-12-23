@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "earthernware",
+  "id": "lilis_pottery",
   "version": "${version}",
-  "name": "[Let's Do] Earthernware",
+  "name": "[Let's Do] LilisPottery",
   "description": "A small pottery mod focused on clay, kilns and decorative bricks. Discover new clay types and shape them into bricks, vases and flower pots.",
   "authors": [
     "satisfy"
   ],
   "contact": {
     "issues": "https://github.com/satisfyu/Let-s-Do-Hub",
-    "sources": "https://github.com/satisfyu/Earthernware"
+    "sources": "https://github.com/Let-s-Do-Collection/LilisPottery"
   },
   "license": "custom",
   "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.satisfy.earthernware.fabric.EarthernwareFabric"
+      "net.satisfy.lilis_pottery.fabric.LilisPotteryFabric"
     ],
     "fabric-datagen": [
-      "net.satisfy.earthernware.fabric.datagen.EarthernwareDatagen"
+      "net.satisfy.lilis_pottery.fabric.datagen.LilisPotteryDatagen"
     ],
     "client": [
-      "net.satisfy.earthernware.fabric.client.EarthernwareClientFabric"
+      "net.satisfy.lilis_pottery.fabric.client.LilisPotteryClientFabric"
     ]
   },
   "depends": {
@@ -33,6 +33,6 @@
   "suggests": {
   },
   "mixins": [
-    "earthernware-fabric.mixins.json"
+    "lilis_pottery-fabric.mixins.json"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "type": "lilis_pottery:firing",
+  "base": {
+    "item": "lilis_pottery:yellow_brick_garden_pot"
+  },
+  "modifier": {
+    "tag": "lilis_pottery:dyes"
+  },
+  "burnTime": 500
+}

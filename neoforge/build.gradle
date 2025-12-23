@@ -14,7 +14,7 @@ loom {
     neoForge { }
 }
 
-def jarFileName = 'letsdo-earthernware-neoforge'
+def jarFileName = 'letsdo-lilis_pottery-neoforge'
 def changelogText = rootProject.file("CHANGELOG.md").text
 archivesBaseName = jarFileName
 
@@ -82,7 +82,7 @@ publishing {
 
 modrinth {
     token = System.getenv("MODRINTH_TOKEN")
-    projectId = "lets-do-earthernware"
+    projectId = "lets-do-lilis_pottery"
     versionNumber = rootProject.mod_version
     versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-neoforge]"
     versionType = "release"
@@ -105,7 +105,7 @@ curseforge {
         addGameVersion rootProject.minecraft_version
         addGameVersion "NeoForge"
         mainArtifact(remapJar) {
-            displayName = "Earthernware - ${rootProject.mod_version} - NEOFORGE - ${rootProject.minecraft_version}"
+            displayName = "Lilis_Pottery - ${rootProject.mod_version} - NEOFORGE - ${rootProject.minecraft_version}"
             changelog = changelogText
             changelogType = "markdown"
         }

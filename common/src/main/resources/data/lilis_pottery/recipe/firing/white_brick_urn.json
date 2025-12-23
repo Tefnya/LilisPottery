@@ -1,0 +1,10 @@
+{
+  "type": "lilis_pottery:firing",
+  "base": {
+    "item": "lilis_pottery:white_brick_urn"
+  },
+  "modifier": {
+    "tag": "lilis_pottery:dyes"
+  },
+  "burnTime": 550
+}

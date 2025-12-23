@@ -4,32 +4,32 @@ license = "Custom"
 issueTrackerURL = "https://github.com/satisfyu/Let-s-Do-Hub"
 
 [[mixins]]
-config = "earthernware-neoforge.mixins.json"
+config = "lilis_pottery-neoforge.mixins.json"
 
 [[mods]]
-modId = "earthernware"
+modId = "lilis_pottery"
 version = "${version}"
-displayName = "[Let's Do] Earthernware"
+displayName = "[Let's Do] Lili's Pottery"
 authors = "satisfy"
 description = '''
 A small pottery mod focused on clay, kilns and decorative bricks. Discover new clay types and shape them into bricks, vases and flower pots.'''
 logoFile = "pack.png"
 
-[[dependencies.earthernware]]
+[[dependencies.lilis_pottery]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.earthernware]]
+[[dependencies.lilis_pottery]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.earthernware]]
+[[dependencies.lilis_pottery]]
 modId = "architectury"
 type = "required"
 versionRange = "[9.0.8,)"

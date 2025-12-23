@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#lilis_pottery:is_lush_caves",
+  "features": "lilis_pottery:ore_blue_clay_lush_caves",
+  "step": "underground_ores"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lilis_pottery:handmade_bricks"
+  },
+  "result": {
+    "id": "lilis_pottery:handmade_brick_wall"
+  }
+}

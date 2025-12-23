@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#lilis_pottery:has_blue_clay",
+  "features": "lilis_pottery:ore_blue_clay",
+  "step": "underground_ores"
+}

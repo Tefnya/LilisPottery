@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "lilis_pottery:handmade_bricks"
+    }
+  },
+  "result": {
+    "id": "lilis_pottery:handmade_brick_slab",
+    "count": 6
+  }
+}

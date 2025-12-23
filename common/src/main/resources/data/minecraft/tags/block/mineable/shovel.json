@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "earthernware:red_clay",
-    "earthernware:yellow_clay",
-    "earthernware:white_clay",
-    "earthernware:blue_clay",
-    "earthernware:dark_clay"
+    "lilis_pottery:red_clay",
+    "lilis_pottery:yellow_clay",
+    "lilis_pottery:white_clay",
+    "lilis_pottery:blue_clay",
+    "lilis_pottery:dark_clay"
   ]
 }

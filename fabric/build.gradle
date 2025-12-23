@@ -9,7 +9,7 @@ architectury {
     fabric()
 }
 
-def jarFileName = 'letsdo-earthernware-fabric'
+def jarFileName = 'letsdo-lilis_pottery-fabric'
 def changelogText = rootProject.file("CHANGELOG.md").text
 archivesBaseName = jarFileName
 
@@ -88,7 +88,7 @@ publishing {
 
 //modrinth {
 //    token = System.getenv("MODRINTH_TOKEN")
-//    projectId = "lets-do-earthernware"
+//    projectId = "lets-do-lilis_pottery"
 //    versionNumber = rootProject.mod_version
 //    versionName = "${rootProject.archives_base_name}-${rootProject.mod_version} [${rootProject.minecraft_version}-fabric]"
 //    versionType = "release"
@@ -111,7 +111,7 @@ publishing {
 //        addGameVersion rootProject.minecraft_version
 //        addGameVersion "Fabric"
 //        mainArtifact(remapJar) {
-//            displayName = "Earthernware - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
+//            displayName = "Lilis_Pottery - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
 //            changelog = changelogText
 //            changelogType = "markdown"
 //        }
@@ -139,18 +139,18 @@ publishing {
 //        }
 //        println "Using Discord webhook: ${discordWebhookUrl.replaceAll('/api/webhooks/[^/]+/[^/]+$', '/api/webhooks/********/********')}"
 //
-//        def modName = (project.findProperty("modDisplayName") ?: "earthernware").toString()
+//        def modName = (project.findProperty("modDisplayName") ?: "lilis_pottery").toString()
 //        def versionLabel = rootProject.mod_version
 //        def full = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
 //        def m = (full =~ /(?s)(\[[^\]]+][\s\S]*?)(\n\*\*\*\n)/)
 //        def block = m.find() ? m.group(1).trim() : full.trim()
 //        if (block.length() > 1900) block = block.substring(0, 1900) + "…"
 //
-//        def linksMd = "[Modrinth](https://modrinth.com/mod/lets-do-earthernware)\n[CurseForge](https://www.curseforge.com/minecraft/mc-mods/lets-do-earthernware)"
+//        def linksMd = "[Modrinth](https://modrinth.com/mod/lets-do-lilis_pottery)\n[CurseForge](https://www.curseforge.com/minecraft/mc-mods/lets-do-lilis_pottery)"
 //        def contentLine = "**${modName} ${versionLabel} has been released! 🎉**\n\nLearn about all changes and improvements below:"
 //        def payload = """{
 //  "username": "Frosty [Let’s Do] Assistant",
-//    "avatar_url": "https://raw.githubusercontent.com/Let-s-Do-Collection/Earthernware/main/common/src/main/resources/pack.png",
+//    "avatar_url": "https://raw.githubusercontent.com/Let-s-Do-Collection/Lilis_Pottery/main/common/src/main/resources/pack.png",
 //  "content": "${escapeJson(contentLine)}",
 //    "embeds": [{
 //    "title": "**Changelog**",
@@ -163,7 +163,7 @@ publishing {
 //    "type": 1,
 //    "components": [
 //      { "type": 2, "style": 5, "label": "Download on Modrinth",   "url": "https://modrinth.com/mod/lets-do-alpinew-hispers" },
-//      { "type": 2, "style": 5, "label": "Download on CurseForge", "url": "https://www.curseforge.com/minecraft/mc-mods/lets-do-earthernware" }
+//      { "type": 2, "style": 5, "label": "Download on CurseForge", "url": "https://www.curseforge.com/minecraft/mc-mods/lets-do-lilis_pottery" }
 //    ]
 //  }]
 //}"""

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "zx",
+    "xz"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:bricks"
+    },
+    "z": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "id": "lilis_pottery:handmade_bricks",
+    "count": 4
+  }
+}

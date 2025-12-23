@@ -2,11 +2,11 @@
 
 <div style="text-align: center;">
 
-<p>The farm calls: Experience the art of advanced agriculture and farmhouse cuisine! Use mincers, cooking pots, as well as new grains and fruit varieties to enhance your culinary and farming expertise.</p>
+<p>Feel the warmth of clay and fire. Lili’s Pottery brings handcrafted ceramics, glazing, and kiln firing into your world, turning simple clay into beautiful and functional creations.</p>
 
 <br> 
 
-<p>Refined farming and cooking with new tools, functional blocks, and arolla_pine meals. Use sprinklers, scarecrows, and fertilized soil to improve crops. Process food with a mincer, transport goods with carts, and prepare simple farmhouse dishes. </p>
+<p>Shape raw clay at the pottery table, fire your work in the kiln, and create vases, pots, planters, and decorative blocks. From rustic earthenware to refined pieces, pottery becomes a creative and immersive craft.</p>
 
 </div>
 
