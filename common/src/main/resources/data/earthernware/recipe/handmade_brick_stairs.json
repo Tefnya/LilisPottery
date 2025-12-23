@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x  ",
+    "xx ",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "earthernware:handmade_bricks"
+    }
+  },
+  "result": {
+    "id": "earthernware:handmade_brick_stairs",
+    "count": 4
+  }
+}

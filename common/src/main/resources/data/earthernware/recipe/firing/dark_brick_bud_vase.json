@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:firing",
+  "base": {
+    "item": "earthernware:dark_brick_bud_vase"
+  },
+  "modifier": {
+    "tag": "earthernware:dyes"
+  },
+  "burnTime": 400
+}

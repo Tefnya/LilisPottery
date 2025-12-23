@@ -6,6 +6,7 @@ import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
+import net.satisfy.earthernware.client.gui.KilnGui;
 import net.satisfy.earthernware.client.gui.PotteryTableGui;
 import net.satisfy.earthernware.client.renderer.AbstractStorageBlockEntityRenderer;
 import net.satisfy.earthernware.client.renderer.StorageBlockEntityRenderer;
@@ -121,7 +122,7 @@ public class EarthernwareClient {
     }
 
     public static void registerBlockTransforms() {
-        AbstractStorageBlockEntityRenderer.registerClassTransform(PlanterBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.25f, 0.25f, 0.75f, 1.0f, 90.0f));
+        AbstractStorageBlockEntityRenderer.registerClassTransform(PlanterBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.25f, 0.25f, 0.75f, 1.0f, 0f));
         AbstractStorageBlockEntityRenderer.registerClassTransform(VaseBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.5f, 0.8f, -0.5f, 1.0f, 0.0f));
         AbstractStorageBlockEntityRenderer.registerClassTransform(BudVaseBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.5f, 0.6f, -0.5f, 1.0f, 0.0f));
         AbstractStorageBlockEntityRenderer.registerClassTransform(CupellaBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.5f, 0.3f, -0.5f, 1.0f, 0.0f));
@@ -131,6 +132,7 @@ public class EarthernwareClient {
 
     private static void registerClientScreens() {
         MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.POTTERY_TABLE_SCREEN_HANDLER.get(), PotteryTableGui::new);
+        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.KILN_SCREEN_HANDLER.get(), KilnGui::new);
     }
 
     public static void registerBlockEntityRenderer() {

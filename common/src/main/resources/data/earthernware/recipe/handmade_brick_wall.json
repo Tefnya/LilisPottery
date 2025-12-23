@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "earthernware:handmade_bricks"
+    }
+  },
+  "result": {
+    "id": "earthernware:handmade_brick_wall",
+    "count": 6
+  }
+}

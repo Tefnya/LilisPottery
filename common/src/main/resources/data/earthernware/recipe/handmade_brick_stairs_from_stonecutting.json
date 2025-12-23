@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "earthernware:handmade_bricks"
+  },
+  "result": {
+    "id": "earthernware:handmade_brick_stairs"
+  }
+}

@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfy.earthernware.Earthernware;
 import net.satisfy.earthernware.core.block.entity.AbstractStorageBlockEntity;
+import net.satisfy.earthernware.core.block.entity.KilnBlockEntity;
 import net.satisfy.earthernware.core.block.entity.PotteryTableBlockEntity;
 import net.satisfy.earthernware.core.block.entity.UrnBlockEntity;
 
@@ -21,6 +22,7 @@ public class EntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<AbstractStorageBlockEntity>> STORAGE_BLOCK_ENTITY = registerBlockEntity("storage_block", () -> BlockEntityType.Builder.of(AbstractStorageBlockEntity::new, StorageTypeRegistry.registerBlocks(new HashSet<>()).toArray(new Block[0])).build(null));
     public static final RegistrySupplier<BlockEntityType<PotteryTableBlockEntity>> POTTERY_TABLE_BLOCK_ENTITY = registerBlockEntity("pottery_table", () -> BlockEntityType.Builder.of(PotteryTableBlockEntity::new, ObjectRegistry.POTTERY_TABLE.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<UrnBlockEntity>> URN_BLOCK_ENTITY = registerBlockEntity("urn", () -> BlockEntityType.Builder.of(UrnBlockEntity::new, ObjectRegistry.BRICK_URN.get(), ObjectRegistry.BRICK_AMPHORE.get(), ObjectRegistry.RED_BRICK_URN.get(), ObjectRegistry.RED_BRICK_AMPHORE.get(), ObjectRegistry.YELLOW_BRICK_URN.get(), ObjectRegistry.YELLOW_BRICK_AMPHORE.get(), ObjectRegistry.WHITE_BRICK_URN.get(), ObjectRegistry.WHITE_BRICK_AMPHORE.get(), ObjectRegistry.BLUE_BRICK_URN.get(), ObjectRegistry.BLUE_BRICK_AMPHORE.get(), ObjectRegistry.DARK_BRICK_URN.get(), ObjectRegistry.DARK_BRICK_AMPHORE.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<KilnBlockEntity>> KILN_BLOCK_ENTITY = registerBlockEntity("kiln", () -> BlockEntityType.Builder.of(KilnBlockEntity::new, ObjectRegistry.KILN.get()).build(null));
 
 
     public static <T extends EntityType<?>> RegistrySupplier<T> registerEntity(final String path, final Supplier<T> type) {

@@ -33,5 +33,6 @@
   "suggests": {
   },
   "mixins": [
+    "earthernware-fabric.mixins.json"
   ]
 }

@@ -1,8 +1,19 @@
 package net.satisfy.earthernware.core.block;
 
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,6 +30,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.earthernware.core.block.entity.UrnBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+import static net.satisfy.earthernware.core.block.AbstractStorageBlock.nearestDyeColor;
 
 public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
     public enum Variant {
@@ -78,6 +93,44 @@ public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
     @Override
     public @NotNull VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
         return Shapes.empty();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        int earthy = 0xB08D57;
+        int gold = 0xFFD700;
+
+        tooltipComponents.add(Component.translatable("tooltip.earthernware.canbeplaced")
+                .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+
+        if (!Screen.hasShiftDown()) {
+            Component key = Component.literal("[SHIFT]").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(gold)));
+            tooltipComponents.add(Component.translatable("tooltip.earthernware.tooltip_information.hold", key)
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            return;
+        }
+
+        tooltipComponents.add(Component.translatable("tooltip.earthernware.pot.info")
+                .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+
+        CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
+        if (customData != null) {
+            CompoundTag tag = customData.copyTag();
+            boolean painted = tag.contains("painted", 1) && tag.getBoolean("painted");
+            int rgb = tag.contains("sideColorRgb", 99) ? tag.getInt("sideColorRgb") : 0;
+
+            if (painted && rgb != 0) {
+                tooltipComponents.add(Component.empty());
+
+                DyeColor nearest = nearestDyeColor(rgb);
+                Component colorName = Component.translatable("color.minecraft." + nearest.getName())
+                        .withStyle(style -> style.withColor(rgb & 0xFFFFFF));
+
+                tooltipComponents.add(Component.translatable("tooltip.earthernware.painted", colorName)
+                        .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            }
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "earthernware:red_brick_stairs",
+    "earthernware:yellow_brick_stairs",
+    "earthernware:white_brick_stairs",
+    "earthernware:blue_brick_stairs",
+    "earthernware:dark_brick_stairs",
+    "earthernware:handmade_brick_stairs"
+  ]
+}

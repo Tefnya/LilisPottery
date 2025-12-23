@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:pottering",
+  "inputItem": {
+    "item": "earthernware:dark_clay_ball"
+  },
+  "outputItem": {
+    "count": 1,
+    "id": "earthernware:dark_brick_urn"
+  }
+}

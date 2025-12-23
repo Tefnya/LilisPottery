@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:firing",
+  "base": {
+    "item": "earthernware:yellow_brick_garden_pot"
+  },
+  "modifier": {
+    "tag": "earthernware:dyes"
+  },
+  "burnTime": 500
+}

@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:pottering",
+  "inputItem": {
+    "item": "earthernware:white_clay_ball"
+  },
+  "outputItem": {
+    "count": 1,
+    "id": "earthernware:white_brick_garden_pot"
+  }
+}

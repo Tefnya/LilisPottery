@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:firing",
+  "base": {
+    "item": "earthernware:blue_brick_urn"
+  },
+  "modifier": {
+    "tag": "earthernware:dyes"
+  },
+  "burnTime": 550
+}

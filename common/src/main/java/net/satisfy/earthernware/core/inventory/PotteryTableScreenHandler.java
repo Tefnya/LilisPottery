@@ -25,7 +25,6 @@ import net.satisfy.earthernware.core.registry.ScreenHandlerRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PotteryTableScreenHandler extends AbstractContainerMenu {
     private static final int INPUT_SLOT = 0;
@@ -43,7 +42,6 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
     private long lastSoundTime;
 
     private final Slot inputSlot;
-    private final Slot resultSlot;
 
     private Runnable slotUpdateListener = () -> {
     };
@@ -60,30 +58,91 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
         this.context = context;
         this.world = playerInventory.player.level();
 
-        this.inputContainer = Objects.requireNonNullElseGet(input, () -> new SimpleContainer(1) {
-            @Override
-            public void setChanged() {
-                super.setChanged();
-                PotteryTableScreenHandler.this.slotsChanged(this);
-                PotteryTableScreenHandler.this.slotUpdateListener.run();
-            }
-        });
+        if (input == null) {
+            this.inputContainer = new SimpleContainer(1) {
+                @Override
+                public void setChanged() {
+                    super.setChanged();
+                    PotteryTableScreenHandler.this.slotsChanged(this);
+                    PotteryTableScreenHandler.this.slotUpdateListener.run();
+                }
+            };
+        } else {
+            this.inputContainer = new Container() {
+                @Override
+                public int getContainerSize() {
+                    return input.getContainerSize();
+                }
+
+                @Override
+                public boolean isEmpty() {
+                    return input.isEmpty();
+                }
+
+                @Override
+                public @NotNull ItemStack getItem(int slot) {
+                    return input.getItem(slot);
+                }
+
+                @Override
+                public @NotNull ItemStack removeItem(int slot, int amount) {
+                    return input.removeItem(slot, amount);
+                }
+
+                @Override
+                public @NotNull ItemStack removeItemNoUpdate(int slot) {
+                    return input.removeItemNoUpdate(slot);
+                }
+
+                @Override
+                public void setItem(int slot, ItemStack stack) {
+                    input.setItem(slot, stack);
+                }
+
+                @Override
+                public void setChanged() {
+                    input.setChanged();
+                    PotteryTableScreenHandler.this.slotsChanged(this);
+                    PotteryTableScreenHandler.this.slotUpdateListener.run();
+                }
+
+                @Override
+                public boolean stillValid(Player player) {
+                    return input.stillValid(player);
+                }
+
+                @Override
+                public void clearContent() {
+                    input.clearContent();
+                }
+            };
+        }
 
         this.inputSlot = this.addSlot(new Slot(this.inputContainer, 0, 20, 33));
-        this.resultSlot = this.addSlot(new Slot(this.resultContainer, 0, 143, 33) {
+        this.addSlot(new Slot(this.resultContainer, 0, 143, 33) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
             }
 
             @Override
+            public boolean mayPickup(Player player) {
+                return PotteryTableScreenHandler.this.isValidRecipeIndex(PotteryTableScreenHandler.this.selectedRecipeIndex.get()) && this.hasItem();
+            }
+
+            @Override
             public void onTake(Player player, ItemStack stack) {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
-                PotteryTableScreenHandler.this.resultContainer.awardUsedRecipes(player, List.of(PotteryTableScreenHandler.this.inputSlot.getItem()));
 
-                ItemStack removed = PotteryTableScreenHandler.this.inputSlot.remove(1);
-                if (!removed.isEmpty()) {
+                PotteryTableScreenHandler.this.resultContainer.setItem(0, ItemStack.EMPTY);
+
+                PotteryTableScreenHandler.this.inputSlot.remove(1);
+
+                if (PotteryTableScreenHandler.this.inputSlot.hasItem()) {
                     PotteryTableScreenHandler.this.setupResultSlot();
+                } else {
+                    PotteryTableScreenHandler.this.selectedRecipeIndex.set(-1);
+                    PotteryTableScreenHandler.this.broadcastChanges();
                 }
 
                 PotteryTableScreenHandler.this.context.execute((level, pos) -> {
@@ -137,8 +196,9 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
         if (this.isValidRecipeIndex(id)) {
             this.selectedRecipeIndex.set(id);
             this.setupResultSlot();
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean isValidRecipeIndex(int id) {
@@ -148,7 +208,7 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
     @Override
     public void slotsChanged(Container container) {
         ItemStack current = this.inputSlot.getItem();
-        if (!current.is(this.inputStack.getItem())) {
+        if (!ItemStack.isSameItemSameComponents(current, this.inputStack)) {
             this.inputStack = current.copy();
             this.setupRecipeList(container, current);
         }
@@ -161,7 +221,7 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
     private void setupRecipeList(Container container, ItemStack stack) {
         this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
-        this.resultSlot.set(ItemStack.EMPTY);
+        this.resultContainer.setItem(0, ItemStack.EMPTY);
 
         if (!stack.isEmpty()) {
             this.recipes = this.world.getRecipeManager().getRecipesFor(RecipeRegistry.POTTERING.get(), createRecipeInput(container), this.world);
@@ -176,12 +236,12 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
             ItemStack result = recipeHolder.value().assemble(createRecipeInput(this.inputContainer), this.world.registryAccess());
             if (result.isItemEnabled(this.world.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(recipeHolder);
-                this.resultSlot.set(result);
+                this.resultContainer.setItem(0, result);
             } else {
-                this.resultSlot.set(ItemStack.EMPTY);
+                this.resultContainer.setItem(0, ItemStack.EMPTY);
             }
         } else {
-            this.resultSlot.set(ItemStack.EMPTY);
+            this.resultContainer.setItem(0, ItemStack.EMPTY);
         }
 
         this.broadcastChanges();
@@ -258,5 +318,6 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         this.resultContainer.removeItemNoUpdate(0);
+        this.context.execute((level, blockPos) -> this.clearContainer(player, this.inputContainer));
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.satisfy.earthernware.Earthernware;
+import net.satisfy.earthernware.core.inventory.KilnScreenHandler;
 import net.satisfy.earthernware.core.inventory.PotteryTableScreenHandler;
 
 import java.util.function.Supplier;
@@ -14,6 +15,7 @@ public class ScreenHandlerRegistry {
     public static final DeferredRegister<MenuType<?>> SCREEN_TYPES = DeferredRegister.create(Earthernware.MOD_ID, Registries.MENU);
 
     public static final RegistrySupplier<MenuType<PotteryTableScreenHandler>> POTTERY_TABLE_SCREEN_HANDLER = create("pottery_table", () -> new MenuType<>(PotteryTableScreenHandler::new, FeatureFlags.VANILLA_SET));
+    public static final RegistrySupplier<MenuType<KilnScreenHandler>> KILN_SCREEN_HANDLER = create("kiln", () -> new MenuType<>(KilnScreenHandler::new, FeatureFlags.VANILLA_SET));
 
     public static void init() {
         SCREEN_TYPES.register();

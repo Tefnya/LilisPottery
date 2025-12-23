@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:firing",
+  "base": {
+    "item": "earthernware:white_brick_vase"
+  },
+  "modifier": {
+    "tag": "earthernware:dyes"
+  },
+  "burnTime": 450
+}

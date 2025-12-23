@@ -21,7 +21,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -95,13 +94,10 @@ public class GeneralUtil {
     }
 
     public static Collection<ServerPlayer> tracking(ServerLevel world, ChunkPos pos) {
-        Objects.requireNonNull(world, "The world cannot be null");
-        Objects.requireNonNull(pos, "The chunk pos cannot be null");
         return world.getChunkSource().chunkMap.getPlayers(pos, false);
     }
 
     public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
-        Objects.requireNonNull(pos, "BlockPos cannot be null");
         return tracking(world, new ChunkPos(pos));
     }
 }

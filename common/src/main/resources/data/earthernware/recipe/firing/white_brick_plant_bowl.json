@@ -1,0 +1,10 @@
+{
+  "type": "earthernware:firing",
+  "base": {
+    "item": "earthernware:white_brick_plant_bowl"
+  },
+  "modifier": {
+    "tag": "earthernware:dyes"
+  },
+  "burnTime": 350
+}

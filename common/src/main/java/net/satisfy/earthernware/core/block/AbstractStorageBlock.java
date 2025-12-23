@@ -1,9 +1,13 @@
 package net.satisfy.earthernware.core.block;
 
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -15,7 +19,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -27,12 +34,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.satisfy.earthernware.core.block.entity.AbstractStorageBlockEntity;
 import net.satisfy.earthernware.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractStorageBlock extends AbstractFacingBlock implements EntityBlock {
@@ -47,7 +57,6 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
             this.registerDefaultState(baseState);
         }
     }
-
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -127,6 +136,7 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
         }
     }
 
+    @Override
     public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
@@ -139,6 +149,7 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
 
     public abstract boolean canInsertStack(ItemStack stack);
 
+    @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new AbstractStorageBlockEntity(pos, state, this.size());
     }
@@ -152,17 +163,17 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
         }
 
         int sideColorRgb = 0;
-        boolean painted = false;
+        boolean painted;
 
         CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
         if (customData != null) {
             CompoundTag tag = customData.copyTag();
 
-            if (tag.contains("sideColorRgb")) {
+            if (tag.contains("sideColorRgb", 99)) {
                 sideColorRgb = tag.getInt("sideColorRgb");
             }
 
-            if (tag.contains("painted")) {
+            if (tag.contains("painted", 1)) {
                 painted = tag.getBoolean("painted");
             } else {
                 painted = sideColorRgb != 0;
@@ -170,7 +181,6 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
 
             if (state.hasProperty(PAINTED) && state.getValue(PAINTED) != painted) {
                 level.setBlock(pos, state.setValue(PAINTED, painted), 2);
-                state = level.getBlockState(pos);
             }
 
             BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -178,16 +188,122 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
                 storageEntity.setSideColorRgb(sideColorRgb);
                 storageEntity.setPainted(painted);
 
-                if (tag.contains("glazed")) {
+                if (tag.contains("glazed", 1)) {
                     storageEntity.setGlazed(tag.getBoolean("glazed"));
                 }
-                if (tag.contains("glazeColorRgb")) {
+                if (tag.contains("glazeColorRgb", 99)) {
                     storageEntity.setGlazeColorRgb(tag.getInt("glazeColorRgb"));
                 }
-                if (tag.contains("glazeStrength")) {
+                if (tag.contains("glazeStrength", 99)) {
                     storageEntity.setGlazeStrength(tag.getFloat("glazeStrength"));
                 }
             }
         }
     }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        int earthy = 0xB08D57;
+        tooltipComponents.add(Component.translatable("tooltip.earthernware.canbeplaced")
+                .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+
+        CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
+        if (customData != null) {
+            CompoundTag tag = customData.copyTag();
+            boolean painted = tag.contains("painted", 1) && tag.getBoolean("painted");
+            int rgb = tag.contains("sideColorRgb", 99) ? tag.getInt("sideColorRgb") : 0;
+
+            if (painted && rgb != 0) {
+                tooltipComponents.add(Component.empty());
+
+                DyeColor nearest = nearestDyeColor(rgb);
+                Component colorName = Component.translatable("color.minecraft." + nearest.getName())
+                        .withStyle(style -> style.withColor(rgb & 0xFFFFFF));
+
+                tooltipComponents.add(Component.translatable("tooltip.earthernware.painted", colorName)
+                        .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            }
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    static DyeColor nearestDyeColor(int rgb) {
+        DyeColor best = DyeColor.WHITE;
+        int bestDistance = Integer.MAX_VALUE;
+
+        for (DyeColor dyeColor : DyeColor.values()) {
+            int dyeRgb = dyeColor.getFireworkColor();
+            int distance = colorDistanceSquared(rgb, dyeRgb);
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                best = dyeColor;
+            }
+        }
+
+        return best;
+    }
+
+    private static int colorDistanceSquared(int firstRgb, int secondRgb) {
+        int firstRed = (firstRgb >> 16) & 255;
+        int firstGreen = (firstRgb >> 8) & 255;
+        int firstBlue = firstRgb & 255;
+
+        int secondRed = (secondRgb >> 16) & 255;
+        int secondGreen = (secondRgb >> 8) & 255;
+        int secondBlue = secondRgb & 255;
+
+        int redDiff = firstRed - secondRed;
+        int greenDiff = firstGreen - secondGreen;
+        int blueDiff = firstBlue - secondBlue;
+
+        return redDiff * redDiff + greenDiff * greenDiff + blueDiff * blueDiff;
+    }
+
+    @Override
+    public @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+        List<ItemStack> drops = super.getDrops(state, builder);
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        if (!(blockEntity instanceof AbstractStorageBlockEntity storageEntity)) {
+            return drops;
+        }
+
+        for (ItemStack drop : drops) {
+            if (drop.is(this.asItem())) {
+                applyPaintData(drop, storageEntity);
+            }
+        }
+
+        return drops;
+    }
+
+    private void applyPaintData(ItemStack stack, AbstractStorageBlockEntity storageEntity) {
+        CompoundTag tag = new CompoundTag();
+
+        CustomData existing = stack.get(DataComponents.CUSTOM_DATA);
+        if (existing != null) {
+            tag = existing.copyTag();
+        }
+
+        int sideColorRgb = storageEntity.getSideColorRgb();
+        boolean painted = storageEntity.isPainted();
+
+        if (sideColorRgb != 0) {
+            tag.putInt("sideColorRgb", sideColorRgb);
+        }
+
+        tag.putBoolean("painted", painted);
+
+        if (storageEntity.isGlazed()) {
+            tag.putBoolean("glazed", true);
+            int glazeColorRgb = storageEntity.getGlazeColorRgb();
+            if (glazeColorRgb != 0) {
+                tag.putInt("glazeColorRgb", glazeColorRgb);
+            }
+            tag.putFloat("glazeStrength", storageEntity.getGlazeStrength());
+        }
+
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    }
+
+
 }

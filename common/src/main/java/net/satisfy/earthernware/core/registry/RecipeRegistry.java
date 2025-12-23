@@ -7,6 +7,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.satisfy.earthernware.Earthernware;
+import net.satisfy.earthernware.core.recipe.FiringRecipe;
 import net.satisfy.earthernware.core.recipe.PotteringRecipe;
 
 import java.util.function.Supplier;
@@ -17,6 +18,9 @@ public class RecipeRegistry {
 
     public static final RegistrySupplier<RecipeType<PotteringRecipe>> POTTERING = create("pottering");
     public static final RegistrySupplier<RecipeSerializer<PotteringRecipe>> POTTERING_SERIALIZER = create("pottering", PotteringRecipe.Serializer::new);
+
+    public static final RegistrySupplier<RecipeType<FiringRecipe>> FIRING = create("firing");
+    public static final RegistrySupplier<RecipeSerializer<FiringRecipe>> FIRING_SERIALIZER = create("firing", FiringRecipe.Serializer::new);
 
     public static void init() {
         RECIPE_SERIALIZERS.register();

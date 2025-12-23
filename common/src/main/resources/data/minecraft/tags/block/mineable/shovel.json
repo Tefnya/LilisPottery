@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "earthernware:red_clay",
+    "earthernware:yellow_clay",
+    "earthernware:white_clay",
+    "earthernware:blue_clay",
+    "earthernware:dark_clay"
+  ]
+}

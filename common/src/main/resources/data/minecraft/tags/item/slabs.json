@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "earthernware:red_brick_slab",
+    "earthernware:yellow_brick_slab",
+    "earthernware:white_brick_slab",
+    "earthernware:blue_brick_slab",
+    "earthernware:dark_brick_slab",
+    "earthernware:handmade_brick_slab"
+  ]
+}

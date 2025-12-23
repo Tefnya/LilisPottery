@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "earthernware:white_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "earthernware:white_brick_stairs"
+  }
+}

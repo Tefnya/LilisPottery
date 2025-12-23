@@ -5,7 +5,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.satisfy.earthernware.Earthernware;
-import net.satisfy.earthernware.core.registry.CompostableRegistry;
 
 @Mod(Earthernware.MOD_ID)
 public class EarthernwareNeoForge {
@@ -16,9 +15,6 @@ public class EarthernwareNeoForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            CompostableRegistry.init();
-            Earthernware.commonInit();
-        });
+        event.enqueueWork(Earthernware::commonInit);
     }
 }

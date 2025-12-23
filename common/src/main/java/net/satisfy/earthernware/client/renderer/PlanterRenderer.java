@@ -9,19 +9,17 @@ import net.satisfy.earthernware.client.util.ClientUtil;
 import net.satisfy.earthernware.core.block.entity.AbstractStorageBlockEntity;
 
 public class PlanterRenderer implements AbstractStorageTypeRenderer {
-
     @Override
     public void render(AbstractStorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
-        for (int index = 0; index < itemStacks.size(); index++) {
-            ItemStack stack = itemStacks.get(index);
-            if (stack.isEmpty() || !(stack.getItem() instanceof BlockItem blockItem)) {
-                continue;
-            }
+        for (int slotIndex = 0; slotIndex < itemStacks.size(); slotIndex++) {
+            ItemStack stack = itemStacks.get(slotIndex);
+            if (stack.isEmpty() || !(stack.getItem() instanceof BlockItem blockItem)) continue;
 
             matrices.pushPose();
-            matrices.translate(0.0f, 0.0f, -0.5f * index);
+            matrices.translate(0.0f, 0.0f, -0.5f * slotIndex);
             ClientUtil.renderBlockFromItem(blockItem, matrices, vertexConsumers, entity);
             matrices.popPose();
         }
     }
+
 }

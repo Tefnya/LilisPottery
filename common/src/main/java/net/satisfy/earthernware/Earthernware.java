@@ -1,6 +1,8 @@
 package net.satisfy.earthernware;
 
 import net.minecraft.resources.ResourceLocation;
+import net.satisfy.earthernware.core.event.BeePotPollinationHandler;
+import net.satisfy.earthernware.core.event.ClayDripstoneColoring;
 import net.satisfy.earthernware.core.event.UrnDeathHandler;
 import net.satisfy.earthernware.core.registry.*;
 
@@ -18,6 +20,8 @@ public class Earthernware {
         RecipeRegistry.init();
         ScreenHandlerRegistry.init();
         UrnDeathHandler.init();
+        ClayDripstoneColoring.init();
+        BeePotPollinationHandler.init();
     }
 
     public static void commonInit() {

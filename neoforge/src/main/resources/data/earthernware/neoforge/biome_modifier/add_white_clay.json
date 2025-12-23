@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#earthernware:has_white_clay",
+  "features": "earthernware:ore_white_clay",
+  "step": "underground_ores"
+}

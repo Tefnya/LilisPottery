@@ -17,6 +17,7 @@ public class EWEnglishLangGen extends FabricLanguageProvider {
     public void generateTranslations(HolderLookup.Provider provider, TranslationBuilder texts) {
         texts.add("creativetab.earthernware.tab", "[Let's Do] Earthenware");
         texts.add(ObjectRegistry.POTTERY_TABLE.get(), "Pottery Table");
+        texts.add(ObjectRegistry.KILN.get(), "Kiln");
 
         texts.add(ObjectRegistry.RED_CLAY.get(), "Red Clay");
         texts.add(ObjectRegistry.YELLOW_CLAY.get(), "Yellow Clay");
@@ -131,5 +132,8 @@ public class EWEnglishLangGen extends FabricLanguageProvider {
         texts.add(ObjectRegistry.DARK_BRICK_SQUARE_POT.get(), "Dark Brick Square Pot");
         texts.add(ObjectRegistry.DARK_BRICK_AMPHORE.get(), "Dark Brick Amphore");
         texts.add(ObjectRegistry.DARK_BRICK_URN.get(), "Dark Brick Urn");
-    }
+        texts.add("tooltip.earthernware.canbeplaced", "Can be placed");
+        texts.add("tooltip.earthernware.tooltip_information.hold", "Hold %s for more Information");
+        texts.add("tooltip.earthernware.pot.info", "Keeps your Items safe when carried in your Inventory upon death.");
+        texts.add("tooltip.earthernware.painted", "This Block has been Fired with Dye: %s");    }
 }
