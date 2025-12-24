@@ -20,7 +20,7 @@ public interface BricksModelGen {
         modelGen.createTrivialCube(ObjectRegistry.YELLOW_CLAY.get());
         modelGen.createTrivialCube(ObjectRegistry.WHITE_CLAY.get());
         modelGen.createTrivialCube(ObjectRegistry.BLUE_CLAY.get());
-        modelGen.createTrivialCube(ObjectRegistry.DARK_CLAY.get());
+        modelGen.createTrivialCube(ObjectRegistry.BLACK_CLAY.get());
 
         modelGen.family(ObjectRegistry.RED_BRICKS.get())
                 .stairs(ObjectRegistry.RED_BRICK_STAIRS.get())
@@ -42,17 +42,17 @@ public interface BricksModelGen {
                 .slab(ObjectRegistry.BLUE_BRICK_SLAB.get())
                 .wall(ObjectRegistry.BLUE_BRICK_WALL.get());
 
-        modelGen.family(ObjectRegistry.DARK_BRICKS.get())
-                .stairs(ObjectRegistry.DARK_BRICK_STAIRS.get())
-                .slab(ObjectRegistry.DARK_BRICK_SLAB.get())
-                .wall(ObjectRegistry.DARK_BRICK_WALL.get());
+        modelGen.family(ObjectRegistry.BLACK_BRICKS.get())
+                .stairs(ObjectRegistry.BLACK_BRICK_STAIRS.get())
+                .slab(ObjectRegistry.BLACK_BRICK_SLAB.get())
+                .wall(ObjectRegistry.BLACK_BRICK_WALL.get());
 
         modelGen.createTrivialCube(ObjectRegistry.CHISELED_BRICKS.get());
         modelGen.createTrivialCube(ObjectRegistry.CHISELED_RED_BRICKS.get());
         modelGen.createTrivialCube(ObjectRegistry.CHISELED_YELLOW_BRICKS.get());
         modelGen.createTrivialCube(ObjectRegistry.CHISELED_WHITE_BRICKS.get());
         modelGen.createTrivialCube(ObjectRegistry.CHISELED_BLUE_BRICKS.get());
-        modelGen.createTrivialCube(ObjectRegistry.CHISELED_DARK_BRICKS.get());
+        modelGen.createTrivialCube(ObjectRegistry.CHISELED_BLACK_BRICKS.get());
     }
 
     static void generateHandmadeBricks(BlockModelGenerators modelGen) {

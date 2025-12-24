@@ -8,11 +8,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,6 +25,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -96,6 +99,41 @@ public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
     }
 
     @Override
+    protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (!stack.is(Items.HONEYCOMB)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (!(blockEntity instanceof UrnBlockEntity urnBlockEntity)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        if (!world.isClientSide) {
+            int baseRgb = urnBlockEntity.getSideColorRgb() != 0 ? urnBlockEntity.getSideColorRgb() : urnBlockEntity.getGlazeColorRgb();
+            if (baseRgb != 0) {
+                urnBlockEntity.setGlazed(true);
+                urnBlockEntity.setGlazeColorRgb(baseRgb);
+
+                float nextStrength = urnBlockEntity.getGlazeStrength() + 0.25f;
+                if (nextStrength > 2.0f) {
+                    nextStrength = 2.0f;
+                }
+                urnBlockEntity.setGlazeStrength(nextStrength);
+
+                world.playSound(null, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+                if (!player.isCreative()) {
+                    stack.shrink(1);
+                }
+            }
+        }
+
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
+    }
+
+    @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         int earthy = 0xB08D57;
         int gold = 0xFFD700;
@@ -103,15 +141,23 @@ public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
         tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.canbeplaced")
                 .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
 
-        if (!Screen.hasShiftDown()) {
+        boolean shiftDown = Screen.hasShiftDown();
+        if (!shiftDown) {
             Component key = Component.literal("[SHIFT]").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(gold)));
             tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.hold", key)
                     .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
-            return;
         }
 
-        tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.pot.info")
-                .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+        if (shiftDown) {
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.info_3")
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            tooltipComponents.add(Component.empty());
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.info_0")
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            tooltipComponents.add(Component.empty());
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.info_1")
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+        }
 
         CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
         if (customData != null) {
@@ -130,6 +176,7 @@ public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
                         .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
             }
         }
+
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 

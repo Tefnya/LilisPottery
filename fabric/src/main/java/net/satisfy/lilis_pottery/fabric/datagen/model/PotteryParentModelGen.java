@@ -7,12 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 public interface PotteryParentModelGen {
 
     static void generate(BlockModelGenerators modelGen) {
-        generateSet(modelGen, "brick");
-        generateSet(modelGen, "red_brick");
-        generateSet(modelGen, "yellow_brick");
-        generateSet(modelGen, "white_brick");
-        generateSet(modelGen, "blue_brick");
-        generateSet(modelGen, "dark_brick");
+        generateSet(modelGen, "");
+        generateSet(modelGen, "red");
+        generateSet(modelGen, "yellow");
+        generateSet(modelGen, "white");
+        generateSet(modelGen, "blue");
+        generateSet(modelGen, "black");
     }
 
     private static void generateSet(BlockModelGenerators modelGen, String prefix) {
@@ -239,11 +239,13 @@ public interface PotteryParentModelGen {
     }
 
     private static ResourceLocation model(String prefix, String name) {
-        return ResourceLocation.fromNamespaceAndPath("lilis_pottery", "block/" + prefix + "_" + name);
+        String path = prefix.isEmpty() ? "block/" + name : "block/" + prefix + "_" + name;
+        return ResourceLocation.fromNamespaceAndPath("lilis_pottery", path);
     }
 
     private static ResourceLocation modelTinted(String prefix, String name) {
-        return ResourceLocation.fromNamespaceAndPath("lilis_pottery", "block/" + prefix + "_" + name + "_tinted");
+        String path = prefix.isEmpty() ? "block/" + name + "_tinted" : "block/" + prefix + "_" + name + "_tinted";
+        return ResourceLocation.fromNamespaceAndPath("lilis_pottery", path);
     }
 
     private static ResourceLocation template(String name) {
@@ -255,7 +257,7 @@ public interface PotteryParentModelGen {
     }
 
     private static String tex(String prefix, String suffix) {
-        return "lilis_pottery:block/" + prefix + "_" + suffix;
+        return prefix.isEmpty() ? "lilis_pottery:block/" + suffix : "lilis_pottery:block/" + prefix + "_" + suffix;
     }
 
     private static String soil() {

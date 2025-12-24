@@ -8,11 +8,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.satisfy.lilis_pottery.client.gui.KilnGui;
 import net.satisfy.lilis_pottery.client.gui.PotteryTableGui;
-import net.satisfy.lilis_pottery.client.renderer.AbstractStorageBlockEntityRenderer;
-import net.satisfy.lilis_pottery.client.renderer.StorageBlockEntityRenderer;
-import net.satisfy.lilis_pottery.client.renderer.FlowerPotRenderer;
-import net.satisfy.lilis_pottery.client.renderer.PlanterRenderer;
-import net.satisfy.lilis_pottery.client.renderer.TallFlowerPotRenderer;
+import net.satisfy.lilis_pottery.client.renderer.*;
 import net.satisfy.lilis_pottery.client.util.StoragePaintTintUtil;
 import net.satisfy.lilis_pottery.core.block.BudVaseBlock;
 import net.satisfy.lilis_pottery.core.block.CupellaBlock;
@@ -32,54 +28,56 @@ public class LilisPotteryClient {
         RenderTypeRegistry.register(
                 RenderType.cutout(),
                 POTTERY_TABLE.get(),
-                BRICK_PLANTER.get(),
-                BRICK_GARDEN_POT.get(),
-                BRICK_SQUARE_POT.get(),
-                BRICK_VASE.get(),
-                BRICK_BUD_VASE.get(),
-                BRICK_CUPELLA.get(),
-                BRICK_PLANT_BOWL.get(),
-                BRICK_AMPHORE.get(),
-                RED_BRICK_PLANTER.get(),
-                RED_BRICK_GARDEN_POT.get(),
-                RED_BRICK_SQUARE_POT.get(),
-                RED_BRICK_VASE.get(),
-                RED_BRICK_BUD_VASE.get(),
-                RED_BRICK_CUPELLA.get(),
-                RED_BRICK_PLANT_BOWL.get(),
-                RED_BRICK_AMPHORE.get(),
-                YELLOW_BRICK_PLANTER.get(),
-                YELLOW_BRICK_GARDEN_POT.get(),
-                YELLOW_BRICK_SQUARE_POT.get(),
-                YELLOW_BRICK_VASE.get(),
-                YELLOW_BRICK_BUD_VASE.get(),
-                YELLOW_BRICK_CUPELLA.get(),
-                YELLOW_BRICK_PLANT_BOWL.get(),
-                YELLOW_BRICK_AMPHORE.get(),
-                WHITE_BRICK_PLANTER.get(),
-                WHITE_BRICK_GARDEN_POT.get(),
-                WHITE_BRICK_SQUARE_POT.get(),
-                WHITE_BRICK_VASE.get(),
-                WHITE_BRICK_BUD_VASE.get(),
-                WHITE_BRICK_CUPELLA.get(),
-                WHITE_BRICK_PLANT_BOWL.get(),
-                WHITE_BRICK_AMPHORE.get(),
-                BLUE_BRICK_PLANTER.get(),
-                BLUE_BRICK_GARDEN_POT.get(),
-                BLUE_BRICK_SQUARE_POT.get(),
-                BLUE_BRICK_VASE.get(),
-                BLUE_BRICK_BUD_VASE.get(),
-                BLUE_BRICK_CUPELLA.get(),
-                BLUE_BRICK_PLANT_BOWL.get(),
-                BLUE_BRICK_AMPHORE.get(),
-                DARK_BRICK_PLANTER.get(),
-                DARK_BRICK_GARDEN_POT.get(),
-                DARK_BRICK_SQUARE_POT.get(),
-                DARK_BRICK_VASE.get(),
-                DARK_BRICK_BUD_VASE.get(),
-                DARK_BRICK_CUPELLA.get(),
-                DARK_BRICK_PLANT_BOWL.get(),
-                DARK_BRICK_AMPHORE.get()
+                LILIS_POTTERY_TABLE.get(),
+                PLANTER.get(),
+                GARDEN_POT.get(),
+                SQUARE_POT.get(),
+                VASE.get(),
+                BUD_VASE.get(),
+                CUPELLA.get(),
+                PLANT_BOWL.get(),
+                AMPHORE.get(),
+                RED_PLANTER.get(),
+                RED_GARDEN_POT.get(),
+                RED_SQUARE_POT.get(),
+                RED_VASE.get(),
+                RED_BUD_VASE.get(),
+                RED_CUPELLA.get(),
+                RED_PLANT_BOWL.get(),
+                RED_AMPHORE.get(),
+                YELLOW_PLANTER.get(),
+                YELLOW_GARDEN_POT.get(),
+                YELLOW_SQUARE_POT.get(),
+                YELLOW_VASE.get(),
+                YELLOW_BUD_VASE.get(),
+                YELLOW_CUPELLA.get(),
+                YELLOW_PLANT_BOWL.get(),
+                YELLOW_AMPHORE.get(),
+                WHITE_PLANTER.get(),
+                WHITE_GARDEN_POT.get(),
+                WHITE_SQUARE_POT.get(),
+                WHITE_VASE.get(),
+                WHITE_BUD_VASE.get(),
+                WHITE_CUPELLA.get(),
+                WHITE_PLANT_BOWL.get(),
+                WHITE_AMPHORE.get(),
+                BLUE_PLANTER.get(),
+                BLUE_GARDEN_POT.get(),
+                BLUE_SQUARE_POT.get(),
+                BLUE_VASE.get(),
+                BLUE_BUD_VASE.get(),
+                BLUE_CUPELLA.get(),
+                BLUE_PLANT_BOWL.get(),
+                BLUE_AMPHORE.get(),
+                BLACK_PLANTER.get(),
+                BLACK_GARDEN_POT.get(),
+                BLACK_SQUARE_POT.get(),
+                BLACK_VASE.get(),
+                BLACK_BUD_VASE.get(),
+                BLACK_CUPELLA.get(),
+                BLACK_PLANT_BOWL.get(),
+                BLACK_AMPHORE.get(),
+                LILITU_STATUE.get()
         );
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
@@ -87,14 +85,14 @@ public class LilisPotteryClient {
                 return -1;
             }
             return BiomeColors.getAverageWaterColor(world, pos);
-        }, POTTERY_TABLE.get());
+        }, POTTERY_TABLE.get(), LILIS_POTTERY_TABLE.get());
 
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> {
             if (tintIndex != 0) {
                 return -1;
             }
             return 4159204;
-        }, POTTERY_TABLE.get().asItem());
+        }, POTTERY_TABLE.get().asItem(), LILIS_POTTERY_TABLE.get().asItem());
 
         registerClientScreens();
         registerStorageTypeRenderers();
@@ -137,5 +135,6 @@ public class LilisPotteryClient {
 
     public static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_BLOCK_ENTITY.get(), context -> new StorageBlockEntityRenderer());
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_BLOCK_ENTITY.get(), context -> new GlazedStorageOverlayRenderer());
     }
 }

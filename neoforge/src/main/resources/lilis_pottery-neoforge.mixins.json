@@ -6,7 +6,7 @@
   "client": [
   ],
   "mixins": [
-    "net.satisfy.lilis_pottery.neoforge.core.mixin.BrushItemMixin"
+    "BrushItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

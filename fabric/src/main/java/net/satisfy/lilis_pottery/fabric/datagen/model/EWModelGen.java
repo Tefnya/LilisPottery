@@ -26,77 +26,78 @@ public class EWModelGen extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_CLAY_BALL.get(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_CLAY_BALL.get(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_CLAY_BALL.get(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_CLAY_BALL.get(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_CLAY_BALL.get(), ModelTemplates.FLAT_ITEM);
 
         itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK.get(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK.get(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK.get(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK.get(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK.get(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_BRICK.get(), ModelTemplates.FLAT_ITEM);
 
         generatePotteryFlatItems(itemModelGenerator);
     }
 
     private static void generatePotteryFlatItems(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.URN.get().asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.RED_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.YELLOW_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.WHITE_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLUE_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.DARK_BRICK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_PLANTER.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_PLANT_BOWL.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_CUPELLA.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_BUD_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_VASE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_GARDEN_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.LILITU_STATUE.get().asItem(), ModelTemplates.FLAT_ITEM);
+
     }
-
 }

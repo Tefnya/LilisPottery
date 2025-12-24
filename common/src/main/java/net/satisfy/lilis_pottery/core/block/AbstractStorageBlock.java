@@ -19,10 +19,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -67,32 +64,61 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
     @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof AbstractStorageBlockEntity storageEntity) {
-            Optional<Tuple<Float, Float>> hitCoordinates = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), this.unAllowedDirections());
-            if (hitCoordinates.isEmpty()) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
-
-            Tuple<Float, Float> coordinates = hitCoordinates.get();
-            int section = this.getSection(coordinates.getA(), coordinates.getB());
-            if (section == Integer.MIN_VALUE) {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
-
-            if (!storageEntity.getInventory().get(section).isEmpty()) {
-                this.remove(world, pos, player, storageEntity, section);
-                return ItemInteractionResult.sidedSuccess(world.isClientSide);
-            }
-
-            if (!stack.isEmpty() && this.canInsertStack(stack)) {
-                this.add(world, pos, player, storageEntity, stack, section);
-                return ItemInteractionResult.sidedSuccess(world.isClientSide);
-            }
-
-            return ItemInteractionResult.CONSUME;
+        if (!(blockEntity instanceof AbstractStorageBlockEntity storageEntity)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (stack.is(Items.HONEYCOMB)) {
+            if (!world.isClientSide) {
+                int baseRgb = storageEntity.getSideColorRgb();
+                if (baseRgb != 0) {
+                    storageEntity.setGlazed(true);
+                    storageEntity.setGlazeColorRgb(baseRgb);
+
+                    float nextStrength = storageEntity.getGlazeStrength() + 0.25f;
+                    if (nextStrength > 2.0f) {
+                        nextStrength = 2.0f;
+                    }
+                    storageEntity.setGlazeStrength(nextStrength);
+
+                    world.playSound(null, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+                    if (!player.isCreative()) {
+                        stack.shrink(1);
+                    }
+                }
+            }
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
+        }
+
+        Optional<Tuple<Float, Float>> hitCoordinates = GeneralUtil.getRelativeHitCoordinatesForBlockFace(
+                hit,
+                state.getValue(FACING),
+                this.unAllowedDirections()
+        );
+
+        if (hitCoordinates.isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        Tuple<Float, Float> coordinates = hitCoordinates.get();
+        int section = this.getSection(coordinates.getA(), coordinates.getB());
+        if (section == Integer.MIN_VALUE) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        if (!storageEntity.getInventory().get(section).isEmpty()) {
+            this.remove(world, pos, player, storageEntity, section);
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
+        }
+
+        if (!stack.isEmpty() && this.canInsertStack(stack)) {
+            this.add(world, pos, player, storageEntity, stack, section);
+            return ItemInteractionResult.sidedSuccess(world.isClientSide);
+        }
+
+        return ItemInteractionResult.CONSUME;
     }
 
     public void add(Level level, BlockPos pos, Player player, AbstractStorageBlockEntity storageEntity, ItemStack itemStack, int index) {
@@ -204,8 +230,25 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         int earthy = 0xB08D57;
+        int gold = 0xFFD700;
+
         tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.canbeplaced")
                 .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+
+        boolean shiftDown = Screen.hasShiftDown();
+        if (!shiftDown) {
+            Component key = Component.literal("[SHIFT]").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(gold)));
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.hold", key)
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+        }
+
+        if (shiftDown) {
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.info_0")
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+            tooltipComponents.add(Component.empty());
+            tooltipComponents.add(Component.translatable("tooltip.lilis_pottery.tooltip_information.info_1")
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
+        }
 
         CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
         if (customData != null) {
@@ -224,6 +267,7 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
                         .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(earthy))));
             }
         }
+
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 

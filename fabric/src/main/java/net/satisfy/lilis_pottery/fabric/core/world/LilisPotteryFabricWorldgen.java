@@ -21,13 +21,13 @@ public final class LilisPotteryFabricWorldgen {
     public static final ResourceKey<PlacedFeature> ORE_YELLOW_CLAY = registerPlacedFeature("ore_yellow_clay");
     public static final ResourceKey<PlacedFeature> ORE_WHITE_CLAY = registerPlacedFeature("ore_white_clay");
     public static final ResourceKey<PlacedFeature> ORE_BLUE_CLAY = registerPlacedFeature("ore_blue_clay");
-    public static final ResourceKey<PlacedFeature> ORE_DARK_CLAY = registerPlacedFeature("ore_dark_clay");
+    public static final ResourceKey<PlacedFeature> ORE_black_CLAY = registerPlacedFeature("ore_black_clay");
 
     public static final ResourceKey<PlacedFeature> ORE_RED_CLAY_SWAMP = registerPlacedFeature("ore_red_clay_swamp");
     public static final ResourceKey<PlacedFeature> ORE_YELLOW_CLAY_SWAMP = registerPlacedFeature("ore_yellow_clay_swamp");
     public static final ResourceKey<PlacedFeature> ORE_WHITE_CLAY_SWAMP = registerPlacedFeature("ore_white_clay_swamp");
     public static final ResourceKey<PlacedFeature> ORE_BLUE_CLAY_SWAMP = registerPlacedFeature("ore_blue_clay_swamp");
-    public static final ResourceKey<PlacedFeature> ORE_DARK_CLAY_SWAMP = registerPlacedFeature("ore_dark_clay_swamp");
+    public static final ResourceKey<PlacedFeature> ORE_black_CLAY_SWAMP = registerPlacedFeature("ore_black_clay_swamp");
 
     public static final ResourceKey<PlacedFeature> ORE_BLUE_CLAY_LUSH_CAVES = registerPlacedFeature("ore_blue_clay_lush_caves");
 
@@ -61,7 +61,7 @@ public final class LilisPotteryFabricWorldgen {
             Biomes.RIVER
     );
 
-    private static final Predicate<BiomeSelectionContext> DARK_CLAY_BIOMES = BiomeSelectors.includeByKey(
+    private static final Predicate<BiomeSelectionContext> black_CLAY_BIOMES = BiomeSelectors.includeByKey(
             Biomes.SWAMP,
             Biomes.MANGROVE_SWAMP
     );
@@ -92,8 +92,8 @@ public final class LilisPotteryFabricWorldgen {
         world.add(ModificationPhase.ADDITIONS, BLUE_CLAY_BIOMES, context ->
                 context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_BLUE_CLAY)
         );
-        world.add(ModificationPhase.ADDITIONS, DARK_CLAY_BIOMES, context ->
-                context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_DARK_CLAY)
+        world.add(ModificationPhase.ADDITIONS, black_CLAY_BIOMES, context ->
+                context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_black_CLAY)
         );
 
         world.add(ModificationPhase.ADDITIONS, SWAMPS, context ->
@@ -109,7 +109,7 @@ public final class LilisPotteryFabricWorldgen {
                 context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_BLUE_CLAY_SWAMP)
         );
         world.add(ModificationPhase.ADDITIONS, SWAMPS, context ->
-                context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_DARK_CLAY_SWAMP)
+                context.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ORE_black_CLAY_SWAMP)
         );
 
         world.add(ModificationPhase.ADDITIONS, LUSH_CAVES, context ->

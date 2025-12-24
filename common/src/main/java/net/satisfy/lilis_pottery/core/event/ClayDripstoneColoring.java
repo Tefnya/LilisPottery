@@ -89,7 +89,7 @@ public final class ClayDripstoneColoring {
         if (terracottaBlock == Blocks.YELLOW_TERRACOTTA) return ObjectRegistry.YELLOW_CLAY.get().defaultBlockState();
         if (terracottaBlock == Blocks.WHITE_TERRACOTTA) return ObjectRegistry.WHITE_CLAY.get().defaultBlockState();
         if (terracottaBlock == Blocks.BLUE_TERRACOTTA) return ObjectRegistry.BLUE_CLAY.get().defaultBlockState();
-        if (terracottaBlock == Blocks.BLACK_TERRACOTTA) return ObjectRegistry.DARK_CLAY.get().defaultBlockState();
+        if (terracottaBlock == Blocks.BLACK_TERRACOTTA) return ObjectRegistry.BLACK_CLAY.get().defaultBlockState();
         return null;
     }
 }

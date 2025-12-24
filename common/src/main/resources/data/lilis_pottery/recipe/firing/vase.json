@@ -1,0 +1,10 @@
+{
+  "type": "lilis_pottery:firing",
+  "base": {
+    "item": "lilis_pottery:vase"
+  },
+  "modifier": {
+    "tag": "lilis_pottery:dyes"
+  },
+  "burnTime": 450
+}

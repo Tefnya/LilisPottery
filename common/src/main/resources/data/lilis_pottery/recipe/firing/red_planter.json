@@ -1,0 +1,10 @@
+{
+  "type": "lilis_pottery:firing",
+  "base": {
+    "item": "lilis_pottery:red_planter"
+  },
+  "modifier": {
+    "tag": "lilis_pottery:dyes"
+  },
+  "burnTime": 500
+}

@@ -18,9 +18,19 @@ import org.jetbrains.annotations.NotNull;
 public class UrnBlockEntity extends BlockEntity implements Container {
     private static final int SIZE = 41;
     private final NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
+    private int sideColorRgb;
+    private boolean glazed;
+    private int glazeColorRgb;
+    private float glazeStrength;
+    private boolean painted;
 
     public UrnBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(EntityTypeRegistry.URN_BLOCK_ENTITY.get(), blockPos, blockState);
+        this.sideColorRgb = 0;
+        this.glazed = false;
+        this.glazeColorRgb = 0;
+        this.glazeStrength = 1.0F;
+        this.painted = false;
     }
 
     public void absorbFrom(Player player) {
@@ -121,5 +131,50 @@ public class UrnBlockEntity extends BlockEntity implements Container {
     protected void loadAdditional(@NotNull CompoundTag compoundTag, HolderLookup.Provider provider) {
         super.loadAdditional(compoundTag, provider);
         ContainerHelper.loadAllItems(compoundTag, this.items, provider);
+    }
+
+    public int getSideColorRgb() {
+        return sideColorRgb;
+    }
+
+    public void setSideColorRgb(int sideColorRgb) {
+        this.sideColorRgb = sideColorRgb;
+        setChanged();
+    }
+
+    public boolean isGlazed() {
+        return glazed;
+    }
+
+    public void setGlazed(boolean glazed) {
+        this.glazed = glazed;
+        setChanged();
+    }
+
+    public int getGlazeColorRgb() {
+        return glazeColorRgb;
+    }
+
+    public void setGlazeColorRgb(int glazeColorRgb) {
+        this.glazeColorRgb = glazeColorRgb;
+        setChanged();
+    }
+
+    public float getGlazeStrength() {
+        return glazeStrength;
+    }
+
+    public void setGlazeStrength(float glazeStrength) {
+        this.glazeStrength = glazeStrength;
+        setChanged();
+    }
+
+    public boolean isPainted() {
+        return painted;
+    }
+
+    public void setPainted(boolean painted) {
+        this.painted = painted;
+        setChanged();
     }
 }
