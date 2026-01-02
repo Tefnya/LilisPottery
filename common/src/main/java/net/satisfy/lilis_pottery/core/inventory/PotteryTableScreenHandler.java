@@ -188,7 +188,8 @@ public class PotteryTableScreenHandler extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.context, player, ObjectRegistry.POTTERY_TABLE.get());
+        return stillValid(this.context, player, ObjectRegistry.POTTERY_TABLE.get())
+                || stillValid(this.context, player, ObjectRegistry.LILIS_POTTERY_TABLE.get());
     }
 
     @Override

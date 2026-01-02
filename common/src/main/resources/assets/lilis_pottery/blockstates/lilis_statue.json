@@ -2,47 +2,47 @@
   "variants": {
     "facing=east,half=lower": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_lower",
+        "model": "lilis_pottery:block/lilis_statue_lower",
         "y": 90
       }
     ],
     "facing=north,half=lower": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_lower"
+        "model": "lilis_pottery:block/lilis_statue_lower"
       }
     ],
     "facing=south,half=lower": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_lower",
+        "model": "lilis_pottery:block/lilis_statue_lower",
         "y": 180
       }
     ],
     "facing=west,half=lower": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_lower",
+        "model": "lilis_pottery:block/lilis_statue_lower",
         "y": 270
       }
     ],
     "facing=east,half=upper": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_upper",
+        "model": "lilis_pottery:block/lilis_statue_upper",
         "y": 90
       }
     ],
     "facing=north,half=upper": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_upper"
+        "model": "lilis_pottery:block/lilis_statue_upper"
       }
     ],
     "facing=south,half=upper": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_upper",
+        "model": "lilis_pottery:block/lilis_statue_upper",
         "y": 180
       }
     ],
     "facing=west,half=upper": [
       {
-        "model": "lilis_pottery:block/lilitu_statue_upper",
+        "model": "lilis_pottery:block/lilis_statue_upper",
         "y": 270
       }
     ]

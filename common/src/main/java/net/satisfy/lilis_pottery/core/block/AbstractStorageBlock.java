@@ -271,6 +271,7 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
+
     static DyeColor nearestDyeColor(int rgb) {
         DyeColor best = DyeColor.WHITE;
         int bestDistance = Integer.MAX_VALUE;

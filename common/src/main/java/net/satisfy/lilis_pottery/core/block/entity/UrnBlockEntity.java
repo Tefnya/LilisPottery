@@ -3,6 +3,11 @@ package net.satisfy.lilis_pottery.core.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.satisfy.lilis_pottery.core.registry.EntityTypeRegistry;
+import net.satisfy.lilis_pottery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 
 public class UrnBlockEntity extends BlockEntity implements Container {
@@ -122,15 +128,46 @@ public class UrnBlockEntity extends BlockEntity implements Container {
     }
 
     @Override
+    public void setChanged() {
+        if (level instanceof ServerLevel serverLevel) {
+            Packet<ClientGamePacketListener> updatePacket = getUpdatePacket();
+            for (ServerPlayer player : GeneralUtil.tracking(serverLevel, getBlockPos())) {
+                player.connection.send(updatePacket);
+            }
+        }
+        super.setChanged();
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return this.saveWithoutMetadata(provider);
+    }
+
+    @Override
     protected void saveAdditional(@NotNull CompoundTag compoundTag, HolderLookup.Provider provider) {
         super.saveAdditional(compoundTag, provider);
         ContainerHelper.saveAllItems(compoundTag, this.items, provider);
+        compoundTag.putInt("sideColorRgb", this.sideColorRgb);
+        compoundTag.putBoolean("glazed", this.glazed);
+        compoundTag.putInt("glazeColorRgb", this.glazeColorRgb);
+        compoundTag.putFloat("glazeStrength", this.glazeStrength);
+        compoundTag.putBoolean("painted", this.painted);
     }
 
     @Override
     protected void loadAdditional(@NotNull CompoundTag compoundTag, HolderLookup.Provider provider) {
         super.loadAdditional(compoundTag, provider);
         ContainerHelper.loadAllItems(compoundTag, this.items, provider);
+        this.sideColorRgb = compoundTag.getInt("sideColorRgb");
+        this.glazed = compoundTag.getBoolean("glazed");
+        this.glazeColorRgb = compoundTag.getInt("glazeColorRgb");
+        this.glazeStrength = compoundTag.contains("glazeStrength", 99) ? compoundTag.getFloat("glazeStrength") : 1.0F;
+        this.painted = compoundTag.getBoolean("painted");
     }
 
     public int getSideColorRgb() {

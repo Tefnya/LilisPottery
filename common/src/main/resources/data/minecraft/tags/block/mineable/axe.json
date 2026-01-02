@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "lilis_pottery:pottery_table"
+    "lilis_pottery:pottery_table",
+    "lilis_pottery:lilis_pottery_table"
   ]
 }

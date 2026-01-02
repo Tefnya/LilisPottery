@@ -1,0 +1,38 @@
+{
+  "parent": "lilis_pottery:main/place_pottery_table",
+  "display": {
+    "icon": {
+      "id": "lilis_pottery:black_clay_ball",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_black_clay_ball"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_black_clay_ball.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "black_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_clay_ball"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "black_clay_ball"
+    ]
+  ]
+}

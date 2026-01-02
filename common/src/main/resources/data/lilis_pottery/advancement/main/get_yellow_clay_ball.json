@@ -1,0 +1,38 @@
+{
+  "parent": "lilis_pottery:main/place_pottery_table",
+  "display": {
+    "icon": {
+      "id": "lilis_pottery:yellow_clay_ball",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_yellow_clay_ball"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_yellow_clay_ball.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "yellow_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_clay_ball"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "yellow_clay_ball"
+    ]
+  ]
+}

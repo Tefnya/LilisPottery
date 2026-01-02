@@ -10,6 +10,7 @@ import net.satisfy.lilis_pottery.core.block.entity.AbstractStorageBlockEntity;
 public class StorageBlockEntityRenderer implements BlockEntityRenderer<AbstractStorageBlockEntity> {
 
     private final AbstractStorageBlockEntityRenderer contentRenderer = new AbstractStorageBlockEntityRenderer();
+    private final GlazedStorageOverlayRenderer overlayRenderer = new GlazedStorageOverlayRenderer();
 
     @Override
     public void render(AbstractStorageBlockEntity entity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
@@ -22,6 +23,7 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<AbstractS
             return;
         }
 
-        contentRenderer.renderContent(entity, poseStack, bufferSource, packedLight, packedOverlay);
+        contentRenderer.renderContent(entity, poseStack, bufferSource);
+        overlayRenderer.render(entity, partialTick, poseStack, bufferSource, packedLight, packedOverlay);
     }
 }

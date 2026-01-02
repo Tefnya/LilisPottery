@@ -8,7 +8,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.lilis_pottery.core.block.AbstractStorageBlock;
+import net.satisfy.lilis_pottery.core.block.UrnBlock;
 import net.satisfy.lilis_pottery.core.block.entity.AbstractStorageBlockEntity;
+import net.satisfy.lilis_pottery.core.block.entity.UrnBlockEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,22 +21,31 @@ public final class StoragePaintTintUtil {
     }
 
     public static void register() {
-        List<Block> storageBlocks = new ArrayList<>();
+        List<Block> tintBlocks = new ArrayList<>();
 
         for (Block block : BuiltInRegistries.BLOCK) {
-            if (block instanceof AbstractStorageBlock) {
-                storageBlocks.add(block);
+            if (block instanceof AbstractStorageBlock || block instanceof UrnBlock) {
+                tintBlocks.add(block);
             }
         }
 
-        ColorHandlerRegistry.registerBlockColors(StoragePaintTintUtil::blockTint, storageBlocks.toArray(Block[]::new));
+        ColorHandlerRegistry.registerBlockColors(StoragePaintTintUtil::blockTint, tintBlocks.toArray(Block[]::new));
     }
 
     private static int blockTint(BlockState state, BlockAndTintGetter level, BlockPos pos, int tintIndex) {
         if (tintIndex != 0) {
             return -1;
         }
-        if (!state.hasProperty(AbstractStorageBlock.PAINTED) || !state.getValue(AbstractStorageBlock.PAINTED)) {
+
+        boolean painted = false;
+
+        if (state.hasProperty(AbstractStorageBlock.PAINTED)) {
+            painted = state.getValue(AbstractStorageBlock.PAINTED);
+        } else if (state.hasProperty(UrnBlock.PAINTED)) {
+            painted = state.getValue(UrnBlock.PAINTED);
+        }
+
+        if (!painted) {
             return -1;
         }
 
@@ -43,10 +54,17 @@ public final class StoragePaintTintUtil {
         }
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
+
         if (blockEntity instanceof AbstractStorageBlockEntity storageEntity) {
             int rgb = storageEntity.getSideColorRgb();
-            return rgb == 0 ? -1 : rgb;
+            return rgb == 0 ? -1 : (rgb & 0xFFFFFF);
         }
+
+        if (blockEntity instanceof UrnBlockEntity urnBlockEntity) {
+            int rgb = urnBlockEntity.getSideColorRgb();
+            return rgb == 0 ? -1 : (rgb & 0xFFFFFF);
+        }
+
         return -1;
     }
 }

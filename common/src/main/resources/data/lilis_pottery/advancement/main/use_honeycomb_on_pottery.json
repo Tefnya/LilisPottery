@@ -1,0 +1,60 @@
+{
+  "parent": "lilis_pottery:main/place_kiln",
+  "criteria": {
+    "glaze": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "lilis_pottery:urn",
+                  "lilis_pottery:amphore",
+                  "lilis_pottery:vase",
+                  "lilis_pottery:bud_vase",
+                  "lilis_pottery:cupella",
+                  "lilis_pottery:planter",
+                  "lilis_pottery:garden_pot",
+                  "lilis_pottery:square_pot",
+                  "lilis_pottery:plant_bowl"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:honeycomb"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.lilis_pottery.glaze.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:honeycomb"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.lilis_pottery.glaze"
+    }
+  },
+  "requirements": [
+    [
+      "glaze"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

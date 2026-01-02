@@ -51,7 +51,7 @@ public class AbstractStorageBlockEntityRenderer {
         return DEFAULT_TRANSFORM;
     }
 
-    public void renderContent(AbstractStorageBlockEntity entity, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void renderContent(AbstractStorageBlockEntity entity, PoseStack poseStack, MultiBufferSource bufferSource) {
         if (entity == null || !entity.hasLevel()) {
             return;
         }

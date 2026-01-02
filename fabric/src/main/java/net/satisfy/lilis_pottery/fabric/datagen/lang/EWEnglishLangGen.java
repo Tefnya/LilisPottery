@@ -118,7 +118,10 @@ public class EWEnglishLangGen extends FabricLanguageProvider {
         texts.add(ObjectRegistry.BLACK_SQUARE_POT.get(), "Black Square Pot");
         texts.add(ObjectRegistry.BLACK_AMPHORE.get(), "Black Amphore");
         texts.add(ObjectRegistry.BLACK_URN.get(), "Black Urn");
-        texts.add(ObjectRegistry.LILITU_STATUE.get(), "Lilitu Statue");
+        texts.add(ObjectRegistry.LILIS_STATUE.get(), "Lili's Statue");
+        texts.add("tooltip.lilis_pottery.completionist_statue.thanks", "Thank you for playing Lili's Pottery!");
+        texts.add("tooltip.lilis_pottery.kiln.base_slot", "Place a Vase in this Slot.");
+        texts.add("tooltip.lilis_pottery.kiln.dye_slot", "Place your desired dye in this Slot.");
         texts.add("tooltip.lilis_pottery.canbeplaced", "Can be placed");
         texts.add("tooltip.lilis_pottery.tooltip_information.info_0", "Can be painted and dyed in a Kiln.");
         texts.add("tooltip.lilis_pottery.tooltip_information.info_1", "Use a Honeycomb on a painted and dyed Pot to glaze it.");
@@ -127,5 +130,38 @@ public class EWEnglishLangGen extends FabricLanguageProvider {
         texts.add("tooltip.lilis_pottery.painted", "This Block has been Fired with Dye: %s");
         texts.add("entity.minecraft.villager.clayworker", "Clayworker");
         texts.add("entity.minecraft.villager.lilis_pottery.clayworker", "Clayworker");
-    }
+        texts.add("advancement.lilis_pottery.root", "A Little Clay Never Hurt");
+        texts.add("advancement.lilis_pottery.root.desc", "Welcome to Lili's Pottery. Get your Hands dirty!");
+        texts.add("advancement.lilis_pottery.place_pottery_table", "Table for Two Hands");
+        texts.add("advancement.lilis_pottery.place_pottery_table.desc", "Place a Pottery Table and start shaping your future.");
+        texts.add("advancement.lilis_pottery.get_clay", "Clay Day");
+        texts.add("advancement.lilis_pottery.get_clay.desc", "Obtain any kind of Clay Ball.");
+        texts.add("advancement.lilis_pottery.place_kiln", "Turn Up the Heat");
+        texts.add("advancement.lilis_pottery.place_kiln.desc", "Place a Kiln. Things are about to get hot.");
+        texts.add("advancement.lilis_pottery.craft_any_clay_item", "First Piece, Best Piece");
+        texts.add("advancement.lilis_pottery.craft_any_clay_item.desc", "Craft any Pottery Item. The start of your Collection!");
+        texts.add("advancement.lilis_pottery.glaze", "Wax On, Wow On");
+        texts.add("advancement.lilis_pottery.glaze.desc", "Use a Honeycomb on any painted pottery to glaze it.");
+        texts.add("advancement.lilis_pottery.get_red_clay_ball", "Red Handed");
+        texts.add("advancement.lilis_pottery.get_red_clay_ball.desc", "Obtain a Red Clay Ball. Often found deep underground, where the earth runs rich.");
+        texts.add("advancement.lilis_pottery.get_blue_clay_ball", "Blue Mood");
+        texts.add("advancement.lilis_pottery.get_blue_clay_ball.desc", "Obtain a Blue Clay Ball. Hidden in damp caves and watery depths.");
+        texts.add("advancement.lilis_pottery.get_white_clay_ball", "Clean Slate");
+        texts.add("advancement.lilis_pottery.get_white_clay_ball.desc", "Obtain a White Clay Ball. Rare and pale, buried in quiet stone layers.");
+        texts.add("advancement.lilis_pottery.get_yellow_clay_ball", "Golden Goop");
+        texts.add("advancement.lilis_pottery.get_yellow_clay_ball.desc", "Obtain a Yellow Clay Ball. Found where warmth and stone meet underground.");
+        texts.add("advancement.lilis_pottery.get_black_clay_ball", "Pitch Black Pebble");
+        texts.add("advancement.lilis_pottery.get_black_clay_ball.desc", "Obtain a Black Clay Ball. Deep, dark, and hidden far below the surface.");
+        texts.add("advancement.lilis_pottery.get_all_red_pottery", "Ruby Row");
+        texts.add("advancement.lilis_pottery.get_all_red_pottery.desc", "Craft every Red pottery variant. Classic and loud.");
+        texts.add("advancement.lilis_pottery.get_all_blue_pottery", "Ocean Shelf");
+        texts.add("advancement.lilis_pottery.get_all_blue_pottery.desc", "Craft every Blue pottery variant. Calm vibes only.");
+        texts.add("advancement.lilis_pottery.get_all_white_pottery", "Porcelain Dreams");
+        texts.add("advancement.lilis_pottery.get_all_white_pottery.desc", "Craft every White pottery variant. Spotless and proud.");
+        texts.add("advancement.lilis_pottery.get_all_yellow_pottery", "Sunny Set");
+        texts.add("advancement.lilis_pottery.get_all_yellow_pottery.desc", "Craft every Yellow pottery variant. Bright and bold.");
+        texts.add("advancement.lilis_pottery.get_all_black_pottery", "The Dark Collection");
+        texts.add("advancement.lilis_pottery.get_all_black_pottery.desc", "Craft every Black pottery variant. Elegant, dramatic, complete.");
+        texts.add("advancement.lilis_pottery.get_everything", "Museum Curator");
+        texts.add("advancement.lilis_pottery.get_everything.desc", "Obtain every item and block from Lili's Pottery. Yes, all of it!");    }
 }

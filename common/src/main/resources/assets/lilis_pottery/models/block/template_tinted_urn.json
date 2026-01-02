@@ -2,11 +2,11 @@
 	"format_version": "1.21.11",
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "lilis_pottery:block/brick_urn_tinted_side",
-		"1": "lilis_pottery:block/brick_urn_top",
-		"2": "lilis_pottery:block/brick_urn_bottom",
+		"0": "lilis_pottery:block/urn_tinted_side",
+		"1": "lilis_pottery:block/urn_top",
+		"2": "lilis_pottery:block/urn_bottom",
 		"3": "lilis_pottery:block/pattern/urn_pattern",
-		"particle": "lilis_pottery:block/brick_urn_tinted_side"
+		"particle": "lilis_pottery:block/urn_tinted_side"
 	},
 	"elements": [
 		{

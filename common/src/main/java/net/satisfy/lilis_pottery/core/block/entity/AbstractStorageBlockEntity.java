@@ -165,13 +165,6 @@ public class AbstractStorageBlockEntity extends BlockEntity {
         return this.saveWithoutMetadata(provider);
     }
 
-    public void setInventory(NonNullList<ItemStack> inventory) {
-        for (int i = 0; i < inventory.size(); i++) {
-            this.inventory.set(i, inventory.get(i));
-        }
-        setChanged();
-    }
-
     public NonNullList<ItemStack> getInventory() {
         return inventory;
     }

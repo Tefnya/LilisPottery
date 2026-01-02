@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class KilnScreenHandler extends AbstractContainerMenu {
-
     private static final int BASE_SLOT = 0;
     private static final int MODIFIER_SLOT = 1;
     private static final int FUEL_SLOT = 2;

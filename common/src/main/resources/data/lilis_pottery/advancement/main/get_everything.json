@@ -1,0 +1,674 @@
+{
+  "parent": "lilis_pottery:main/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "lilis_pottery:lilis_statue"
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_everything"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_everything.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500,
+    "loot": [
+      "lilis_pottery:advancements/completionist"
+    ]
+  },
+  "criteria": {
+    "pottery_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:pottery_table"
+            ]
+          }
+        ]
+      }
+    },
+    "lilis_pottery_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:lilis_pottery_table"
+            ]
+          }
+        ]
+      }
+    },
+    "kiln": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:kiln"
+            ]
+          }
+        ]
+      }
+    },
+    "red_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "white_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "black_clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "red_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "white_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "black_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "red_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_clay"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_clay"
+            ]
+          }
+        ]
+      }
+    },
+    "white_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_clay"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_clay"
+            ]
+          }
+        ]
+      }
+    },
+    "black_clay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_clay"
+            ]
+          }
+        ]
+      }
+    },
+    "chiseled_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:chiseled_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "handmade_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:handmade_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "handmade_brick_stairs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:handmade_brick_stairs"
+            ]
+          }
+        ]
+      }
+    },
+    "handmade_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:handmade_brick_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "handmade_brick_wall": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:handmade_brick_wall"
+            ]
+          }
+        ]
+      }
+    },
+    "planter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:planter"
+            ]
+          }
+        ]
+      }
+    },
+    "plant_bowl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:plant_bowl"
+            ]
+          }
+        ]
+      }
+    },
+    "cupella": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:cupella"
+            ]
+          }
+        ]
+      }
+    },
+    "bud_vase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:bud_vase"
+            ]
+          }
+        ]
+      }
+    },
+    "vase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:vase"
+            ]
+          }
+        ]
+      }
+    },
+    "garden_pot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:garden_pot"
+            ]
+          }
+        ]
+      }
+    },
+    "square_pot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:square_pot"
+            ]
+          }
+        ]
+      }
+    },
+    "urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:urn"
+            ]
+          }
+        ]
+      }
+    },
+    "amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "red_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_urn"
+            ]
+          }
+        ]
+      }
+    },
+    "red_amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_urn"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow_amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "white_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_urn"
+            ]
+          }
+        ]
+      }
+    },
+    "white_amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_urn"
+            ]
+          }
+        ]
+      }
+    },
+    "blue_amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "black_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_urn"
+            ]
+          }
+        ]
+      }
+    },
+    "black_amphore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_amphore"
+            ]
+          }
+        ]
+      }
+    },
+    "lilis_statue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:lilis_statue"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pottery_table"
+    ],
+    [
+      "lilis_pottery_table"
+    ],
+    [
+      "kiln"
+    ],
+    [
+      "red_clay_ball"
+    ],
+    [
+      "yellow_clay_ball"
+    ],
+    [
+      "white_clay_ball"
+    ],
+    [
+      "blue_clay_ball"
+    ],
+    [
+      "black_clay_ball"
+    ],
+    [
+      "red_brick"
+    ],
+    [
+      "yellow_brick"
+    ],
+    [
+      "white_brick"
+    ],
+    [
+      "blue_brick"
+    ],
+    [
+      "black_brick"
+    ],
+    [
+      "red_clay"
+    ],
+    [
+      "yellow_clay"
+    ],
+    [
+      "white_clay"
+    ],
+    [
+      "blue_clay"
+    ],
+    [
+      "black_clay"
+    ],
+    [
+      "chiseled_bricks"
+    ],
+    [
+      "handmade_bricks"
+    ],
+    [
+      "handmade_brick_stairs"
+    ],
+    [
+      "handmade_brick_slab"
+    ],
+    [
+      "handmade_brick_wall"
+    ],
+    [
+      "planter"
+    ],
+    [
+      "plant_bowl"
+    ],
+    [
+      "cupella"
+    ],
+    [
+      "bud_vase"
+    ],
+    [
+      "vase"
+    ],
+    [
+      "garden_pot"
+    ],
+    [
+      "square_pot"
+    ],
+    [
+      "urn"
+    ],
+    [
+      "amphore"
+    ],
+    [
+      "red_urn"
+    ],
+    [
+      "red_amphore"
+    ],
+    [
+      "yellow_urn"
+    ],
+    [
+      "yellow_amphore"
+    ],
+    [
+      "white_urn"
+    ],
+    [
+      "white_amphore"
+    ],
+    [
+      "blue_urn"
+    ],
+    [
+      "blue_amphore"
+    ],
+    [
+      "black_urn"
+    ],
+    [
+      "black_amphore"
+    ],
+    [
+      "lilis_statue"
+    ]
+  ]
+}

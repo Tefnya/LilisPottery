@@ -97,7 +97,7 @@ public class EWModelGen extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_SQUARE_POT.get().asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_AMPHORE.get().asItem(), ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ObjectRegistry.BLACK_URN.get().asItem(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ObjectRegistry.LILITU_STATUE.get().asItem(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ObjectRegistry.LILIS_STATUE.get().asItem(), ModelTemplates.FLAT_ITEM);
 
     }
 }

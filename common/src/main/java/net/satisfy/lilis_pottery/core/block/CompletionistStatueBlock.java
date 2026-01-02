@@ -2,8 +2,15 @@ package net.satisfy.lilis_pottery.core.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -22,12 +29,14 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.satisfy.lilis_pottery.core.event.FireworkTextEventHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,6 +48,7 @@ import java.util.Map;
 public class CompletionistStatueBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+    private static final int COOLDOWN_TICKS = 600;
 
     private static final VoxelShape BOTTOM_SHAPE = makeBottomShape();
     private static final VoxelShape TOP_SHAPE = makeTopShape();
@@ -48,8 +58,8 @@ public class CompletionistStatueBlock extends Block {
 
     static {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
-            TOP_SHAPES.put(direction, rotateShape(Direction.NORTH, direction, TOP_SHAPE));
-            BOTTOM_SHAPES.put(direction, rotateShape(Direction.NORTH, direction, BOTTOM_SHAPE));
+            TOP_SHAPES.put(direction, rotateShape(direction, TOP_SHAPE));
+            BOTTOM_SHAPES.put(direction, rotateShape(direction, BOTTOM_SHAPE));
         }
     }
 
@@ -65,11 +75,11 @@ public class CompletionistStatueBlock extends Block {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockPos pos = context.getClickedPos();
+        BlockPos blockPos = context.getClickedPos();
         Level level = context.getLevel();
-        BlockPos abovePos = pos.above();
+        BlockPos abovePos = blockPos.above();
 
-        if (pos.getY() >= level.getMaxBuildHeight() - 1) {
+        if (blockPos.getY() >= level.getMaxBuildHeight() - 1) {
             return null;
         }
 
@@ -77,14 +87,44 @@ public class CompletionistStatueBlock extends Block {
             return null;
         }
 
-        BlockState baseState = this.defaultBlockState()
+        return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(HALF, DoubleBlockHalf.LOWER);
-
-        level.setBlock(abovePos, baseState.setValue(HALF, DoubleBlockHalf.UPPER), 3);
-
-        return baseState;
     }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), 3);
+        super.setPlacedBy(level, pos, state, placer, stack);
+    }
+
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
+            return InteractionResult.PASS;
+        }
+
+        if (player.getCooldowns().isOnCooldown(this.asItem())) {
+            return InteractionResult.SUCCESS;
+        }
+
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return InteractionResult.SUCCESS;
+        }
+
+        Vec3 launchPos = hit.getLocation().add(0.0, 0.1, 0.0);
+        Direction facing = state.getValue(CompletionistStatueBlock.FACING);
+
+        FireworkTextEventHandler.launch(serverLevel, launchPos, facing, player.getLookAngle(), "Lili's Pottery");
+        player.getCooldowns().addCooldown(this.asItem(), COOLDOWN_TICKS);
+
+        return InteractionResult.CONSUME;
+    }
+
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
@@ -116,7 +156,7 @@ public class CompletionistStatueBlock extends Block {
     }
 
     @Override
-    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+    public @NotNull BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
             DoubleBlockHalf half = state.getValue(HALF);
             BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
@@ -173,7 +213,7 @@ public class CompletionistStatueBlock extends Block {
     private static VoxelShape makeBottomShape() {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0, 0, 0, 1, 0.1875, 1), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.24375000000000002, 0.1875, 0.375, 0.74375, 1, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0, 0.1875, 0.375, 0.74375, 1, 0.625), BooleanOp.OR);
         return shape;
     }
 
@@ -186,12 +226,12 @@ public class CompletionistStatueBlock extends Block {
         return shape;
     }
 
-    private static VoxelShape rotateShape(Direction from, Direction to, VoxelShape shape) {
-        if (from == to) {
+    private static VoxelShape rotateShape(Direction to, VoxelShape shape) {
+        if (Direction.NORTH == to) {
             return shape;
         }
 
-        int steps = ((to.get2DDataValue() - from.get2DDataValue()) + 4) % 4;
+        int steps = ((to.get2DDataValue() - Direction.NORTH.get2DDataValue()) + 4) % 4;
         VoxelShape rotated = shape;
 
         for (int i = 0; i < steps; i++) {
@@ -199,13 +239,21 @@ public class CompletionistStatueBlock extends Block {
             rotated.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
                 double newMinX = 1.0 - maxZ;
                 double newMaxX = 1.0 - minZ;
-                double newMinZ = minX;
-                double newMaxZ = maxX;
-                next[0] = Shapes.or(next[0], Shapes.box(newMinX, minY, newMinZ, newMaxX, maxY, newMaxZ));
+                next[0] = Shapes.or(next[0], Shapes.box(newMinX, minY, minX, newMaxX, maxY, maxX));
             });
             rotated = next[0];
         }
 
         return rotated;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        int earthy = 0xB08D57;
+        tooltipComponents.add(
+                Component.translatable("tooltip.lilis_pottery.completionist_statue.thanks")
+                        .withStyle(style -> style.withColor(TextColor.fromRgb(earthy)))
+        );
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }

@@ -1,0 +1,41 @@
+{
+  "parent": "lilis_pottery:main/get_blue_clay_ball",
+  "display": {
+    "icon": {
+      "id": "lilis_pottery:blue_urn",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_all_blue_pottery"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_all_blue_pottery.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "blue_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_urn"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "blue_urn"
+    ]
+  ]
+}

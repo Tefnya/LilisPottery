@@ -123,7 +123,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> BLACK_SQUARE_POT = registerWithItem("black_square_pot", () -> new SquarePotBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)));
     public static final RegistrySupplier<Block> BLACK_AMPHORE = registerWithItem("black_amphore", () -> new UrnBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT), UrnBlock.Variant.AMPHORE));
     public static final RegistrySupplier<Block> BLACK_URN = registerWithItem("black_urn", () -> new UrnBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT), UrnBlock.Variant.URN));
-    public static final RegistrySupplier<Block> LILITU_STATUE = registerWithItem("lilitu_statue", () -> new CompletionistStatueBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)));
+    public static final RegistrySupplier<Block> LILIS_STATUE = registerWithItem("lilis_statue", () -> new CompletionistStatueBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)));
 
 
 

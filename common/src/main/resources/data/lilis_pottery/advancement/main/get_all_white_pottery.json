@@ -1,0 +1,41 @@
+{
+  "parent": "lilis_pottery:main/get_white_clay_ball",
+  "display": {
+    "icon": {
+      "id": "lilis_pottery:white_urn",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_all_white_pottery"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_all_white_pottery.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "white_urn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_urn"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "white_urn"
+    ]
+  ]
+}

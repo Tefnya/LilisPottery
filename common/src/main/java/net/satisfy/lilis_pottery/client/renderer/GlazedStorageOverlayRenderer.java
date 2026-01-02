@@ -100,93 +100,85 @@ public class GlazedStorageOverlayRenderer implements BlockEntityRenderer<Abstrac
         return -1;
     }
 
-    private static final class OffsetTintQuadsModel implements BakedModel {
-
-        private final BakedModel parent;
-        private final float offset;
-
-        private OffsetTintQuadsModel(BakedModel parent, float offset) {
-            this.parent = parent;
-            this.offset = offset;
-        }
+    private record OffsetTintQuadsModel(BakedModel parent, float offset) implements BakedModel {
 
         @Override
-        public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull RandomSource random) {
-            List<BakedQuad> quads = parent.getQuads(state, side, random);
-            if (quads.isEmpty()) {
-                return quads;
-            }
-
-            List<BakedQuad> tinted = new ArrayList<>(quads.size());
-            for (BakedQuad quad : quads) {
-                if (quad.getTintIndex() == -1) {
-                    continue;
+            public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull RandomSource random) {
+                List<BakedQuad> quads = parent.getQuads(state, side, random);
+                if (quads.isEmpty()) {
+                    return quads;
                 }
-                tinted.add(offsetQuad(quad, quad.getDirection(), offset));
-            }
-            return tinted;
-        }
 
-        @Override
-        public boolean useAmbientOcclusion() {
-            return parent.useAmbientOcclusion();
-        }
-
-        @Override
-        public boolean isGui3d() {
-            return parent.isGui3d();
-        }
-
-        @Override
-        public boolean usesBlockLight() {
-            return parent.usesBlockLight();
-        }
-
-        @Override
-        public boolean isCustomRenderer() {
-            return parent.isCustomRenderer();
-        }
-
-        @Override
-        public @NotNull net.minecraft.client.renderer.texture.TextureAtlasSprite getParticleIcon() {
-            return parent.getParticleIcon();
-        }
-
-        @Override
-        public @NotNull ItemTransforms getTransforms() {
-            return parent.getTransforms();
-        }
-
-        @Override
-        public @NotNull ItemOverrides getOverrides() {
-            return parent.getOverrides();
-        }
-
-        private static BakedQuad offsetQuad(BakedQuad quad, Direction direction, float offset) {
-            int[] vertices = quad.getVertices().clone();
-
-            float normalX = direction.getStepX();
-            float normalY = direction.getStepY();
-            float normalZ = direction.getStepZ();
-
-            int stride = 8;
-            for (int vertex = 0; vertex < 4; vertex++) {
-                int base = vertex * stride;
-
-                float x = Float.intBitsToFloat(vertices[base]);
-                float y = Float.intBitsToFloat(vertices[base + 1]);
-                float z = Float.intBitsToFloat(vertices[base + 2]);
-
-                x += normalX * offset;
-                y += normalY * offset;
-                z += normalZ * offset;
-
-                vertices[base] = Float.floatToRawIntBits(x);
-                vertices[base + 1] = Float.floatToRawIntBits(y);
-                vertices[base + 2] = Float.floatToRawIntBits(z);
+                List<BakedQuad> tinted = new ArrayList<>(quads.size());
+                for (BakedQuad quad : quads) {
+                    if (quad.getTintIndex() == -1) {
+                        continue;
+                    }
+                    tinted.add(offsetQuad(quad, quad.getDirection(), offset));
+                }
+                return tinted;
             }
 
-            return new BakedQuad(vertices, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade());
+            @Override
+            public boolean useAmbientOcclusion() {
+                return parent.useAmbientOcclusion();
+            }
+
+            @Override
+            public boolean isGui3d() {
+                return parent.isGui3d();
+            }
+
+            @Override
+            public boolean usesBlockLight() {
+                return parent.usesBlockLight();
+            }
+
+            @Override
+            public boolean isCustomRenderer() {
+                return parent.isCustomRenderer();
+            }
+
+            @Override
+            public @NotNull net.minecraft.client.renderer.texture.TextureAtlasSprite getParticleIcon() {
+                return parent.getParticleIcon();
+            }
+
+            @Override
+            public @NotNull ItemTransforms getTransforms() {
+                return parent.getTransforms();
+            }
+
+            @Override
+            public @NotNull ItemOverrides getOverrides() {
+                return parent.getOverrides();
+            }
+
+            private static BakedQuad offsetQuad(BakedQuad quad, Direction direction, float offset) {
+                int[] vertices = quad.getVertices().clone();
+
+                float normalX = direction.getStepX();
+                float normalY = direction.getStepY();
+                float normalZ = direction.getStepZ();
+
+                int stride = 8;
+                for (int vertex = 0; vertex < 4; vertex++) {
+                    int base = vertex * stride;
+
+                    float x = Float.intBitsToFloat(vertices[base]);
+                    float y = Float.intBitsToFloat(vertices[base + 1]);
+                    float z = Float.intBitsToFloat(vertices[base + 2]);
+
+                    x += normalX * offset;
+                    y += normalY * offset;
+                    z += normalZ * offset;
+
+                    vertices[base] = Float.floatToRawIntBits(x);
+                    vertices[base + 1] = Float.floatToRawIntBits(y);
+                    vertices[base + 2] = Float.floatToRawIntBits(z);
+                }
+
+                return new BakedQuad(vertices, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade());
+            }
         }
-    }
 }

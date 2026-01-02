@@ -125,7 +125,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BLACK_SQUARE_POT.get());
                 output.accept(ObjectRegistry.BLACK_AMPHORE.get());
                 output.accept(ObjectRegistry.BLACK_URN.get());
-                output.accept(ObjectRegistry.LILITU_STATUE.get());
+                output.accept(ObjectRegistry.LILIS_STATUE.get());
             })
             .build());
 

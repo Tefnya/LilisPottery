@@ -1,0 +1,37 @@
+{
+  "parent": "lilis_pottery:main/get_clay",
+  "criteria": {
+    "pottery_table": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "block": "lilis_pottery:pottery_table",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.lilis_pottery.place_pottery_table.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "lilis_pottery:pottery_table"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.lilis_pottery.place_pottery_table"
+    }
+  },
+  "requirements": [
+    [
+      "pottery_table"
+    ]
+  ]
+}

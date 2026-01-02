@@ -22,7 +22,10 @@ public class LilisPotteryClientNeoForge {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        LilisPotteryClient.onInitializeClient();
+        event.enqueueWork(() -> {
+            LilisPotteryClient.preInitClient();
+            LilisPotteryClient.onInitializeClient();
+        });
     }
 
     @SubscribeEvent

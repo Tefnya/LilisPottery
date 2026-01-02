@@ -1,0 +1,37 @@
+{
+  "parent": "lilis_pottery:main/place_pottery_table",
+  "criteria": {
+    "kiln": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "block": "lilis_pottery:kiln",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.lilis_pottery.place_kiln.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "lilis_pottery:kiln"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.lilis_pottery.place_kiln"
+    }
+  },
+  "requirements": [
+    [
+      "kiln"
+    ]
+  ]
+}

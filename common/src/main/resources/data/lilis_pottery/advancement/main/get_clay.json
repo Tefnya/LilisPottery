@@ -1,0 +1,113 @@
+{
+  "parent": "lilis_pottery:main/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "minecraft:clay_ball"
+    },
+    "title": {
+      "translate": "advancement.lilis_pottery.get_clay"
+    },
+    "description": {
+      "translate": "advancement.lilis_pottery.get_clay.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "clay_ball": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:red_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "yellow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:yellow_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "white": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:white_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "blue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:blue_clay_ball"
+            ]
+          }
+        ]
+      }
+    },
+    "black": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "lilis_pottery:black_clay_ball"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "clay_ball"
+    ],
+    [
+      "red"
+    ],
+    [
+      "yellow"
+    ],
+    [
+      "white"
+    ],
+    [
+      "blue"
+    ],
+    [
+      "black"
+    ]
+  ]
+}

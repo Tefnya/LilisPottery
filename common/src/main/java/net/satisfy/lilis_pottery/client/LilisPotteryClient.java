@@ -3,21 +3,12 @@ package net.satisfy.lilis_pottery.client;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
-import dev.architectury.registry.menu.MenuRegistry;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
-import net.satisfy.lilis_pottery.client.gui.KilnGui;
-import net.satisfy.lilis_pottery.client.gui.PotteryTableGui;
 import net.satisfy.lilis_pottery.client.renderer.*;
 import net.satisfy.lilis_pottery.client.util.StoragePaintTintUtil;
-import net.satisfy.lilis_pottery.core.block.BudVaseBlock;
-import net.satisfy.lilis_pottery.core.block.CupellaBlock;
-import net.satisfy.lilis_pottery.core.block.GardenPotBlock;
-import net.satisfy.lilis_pottery.core.block.PlanterBlock;
-import net.satisfy.lilis_pottery.core.block.PlantBowlBlock;
-import net.satisfy.lilis_pottery.core.block.VaseBlock;
+import net.satisfy.lilis_pottery.core.block.*;
 import net.satisfy.lilis_pottery.core.registry.EntityTypeRegistry;
-import net.satisfy.lilis_pottery.core.registry.ScreenHandlerRegistry;
 import net.satisfy.lilis_pottery.core.registry.StorageTypeRegistry;
 
 import static net.satisfy.lilis_pottery.core.registry.ObjectRegistry.*;
@@ -77,7 +68,13 @@ public class LilisPotteryClient {
                 BLACK_CUPELLA.get(),
                 BLACK_PLANT_BOWL.get(),
                 BLACK_AMPHORE.get(),
-                LILITU_STATUE.get()
+                LILIS_STATUE.get(),
+                URN.get(),
+                RED_URN.get(),
+                YELLOW_URN.get(),
+                WHITE_URN.get(),
+                BLUE_URN.get(),
+                BLACK_URN.get()
         );
 
         ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
@@ -94,7 +91,6 @@ public class LilisPotteryClient {
             return 4159204;
         }, POTTERY_TABLE.get().asItem(), LILIS_POTTERY_TABLE.get().asItem());
 
-        registerClientScreens();
         registerStorageTypeRenderers();
         registerBlockTransforms();
         registerBlockEntityRenderer();
@@ -128,13 +124,7 @@ public class LilisPotteryClient {
         AbstractStorageBlockEntityRenderer.registerClassTransform(GardenPotBlock.class, new AbstractStorageBlockEntityRenderer.RenderTransform(-0.5f, 0.6f, -0.5f, 1.0f, 0.0f));
     }
 
-    private static void registerClientScreens() {
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.POTTERY_TABLE_SCREEN_HANDLER.get(), PotteryTableGui::new);
-        MenuRegistry.registerScreenFactory(ScreenHandlerRegistry.KILN_SCREEN_HANDLER.get(), KilnGui::new);
-    }
-
     public static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_BLOCK_ENTITY.get(), context -> new StorageBlockEntityRenderer());
-        BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_BLOCK_ENTITY.get(), context -> new GlazedStorageOverlayRenderer());
     }
 }

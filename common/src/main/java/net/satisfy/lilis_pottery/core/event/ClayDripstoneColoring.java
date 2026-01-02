@@ -14,7 +14,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.satisfy.lilis_pottery.core.registry.ObjectRegistry;
 
 public final class ClayDripstoneColoring {
-
     private static final int INTERVAL_TICKS = 5;
     private static final int HORIZONTAL_RADIUS = 16;
     private static final int VERTICAL_RADIUS = 8;

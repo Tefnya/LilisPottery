@@ -14,8 +14,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.lilis_pottery.core.registry.StorageTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 public class GardenPotBlock extends AbstractFlowerPotBlock {
     private static final VoxelShape SHAPE = Shapes.or(
             Block.box(3.0, 0.0, 3.0, 13.0, 8.0, 13.0),

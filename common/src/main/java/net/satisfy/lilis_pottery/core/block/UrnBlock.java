@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.CustomData;
@@ -26,6 +27,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -178,6 +181,95 @@ public class UrnBlock extends AbstractFacingBlock implements EntityBlock {
         }
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+
+        if (level.isClientSide) {
+            return;
+        }
+
+        int sideColorRgb = 0;
+        boolean painted;
+
+        CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
+        if (customData != null) {
+            CompoundTag tag = customData.copyTag();
+
+            if (tag.contains("sideColorRgb", 99)) {
+                sideColorRgb = tag.getInt("sideColorRgb");
+            }
+
+            if (tag.contains("painted", 1)) {
+                painted = tag.getBoolean("painted");
+            } else {
+                painted = sideColorRgb != 0;
+            }
+
+            if (state.hasProperty(PAINTED) && state.getValue(PAINTED) != painted) {
+                level.setBlock(pos, state.setValue(PAINTED, painted), 2);
+            }
+
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof UrnBlockEntity urnBlockEntity) {
+                urnBlockEntity.setSideColorRgb(sideColorRgb);
+                urnBlockEntity.setPainted(painted);
+
+                if (tag.contains("glazed", 1)) {
+                    urnBlockEntity.setGlazed(tag.getBoolean("glazed"));
+                }
+                if (tag.contains("glazeColorRgb", 99)) {
+                    urnBlockEntity.setGlazeColorRgb(tag.getInt("glazeColorRgb"));
+                }
+                if (tag.contains("glazeStrength", 99)) {
+                    urnBlockEntity.setGlazeStrength(tag.getFloat("glazeStrength"));
+                }
+            }
+        }
+    }
+
+    @Override
+    public @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+        List<ItemStack> drops = super.getDrops(state, builder);
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+        if (!(blockEntity instanceof UrnBlockEntity urnBlockEntity)) {
+            return drops;
+        }
+
+        for (ItemStack drop : drops) {
+            if (drop.is(this.asItem())) {
+                CompoundTag tag = new CompoundTag();
+
+                CustomData existing = drop.get(DataComponents.CUSTOM_DATA);
+                if (existing != null) {
+                    tag = existing.copyTag();
+                }
+
+                int sideColorRgb = urnBlockEntity.getSideColorRgb();
+                boolean painted = urnBlockEntity.isPainted();
+
+                if (sideColorRgb != 0) {
+                    tag.putInt("sideColorRgb", sideColorRgb);
+                }
+
+                tag.putBoolean("painted", painted);
+
+                if (urnBlockEntity.isGlazed()) {
+                    tag.putBoolean("glazed", true);
+                    int glazeColorRgb = urnBlockEntity.getGlazeColorRgb();
+                    if (glazeColorRgb != 0) {
+                        tag.putInt("glazeColorRgb", glazeColorRgb);
+                    }
+                    tag.putFloat("glazeStrength", urnBlockEntity.getGlazeStrength());
+                }
+
+                drop.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+            }
+        }
+
+        return drops;
     }
 
     @Override
