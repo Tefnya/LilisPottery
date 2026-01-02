@@ -1,4 +1,6 @@
-<p align="center"><img src="https://imgur.com/RRfGT1P.png" width="1200"></p>
+<p align="center">
+  <img src="https://github.com/Let-s-Do-Collection/LilisPottery/blob/main/Lilis%20Pottery.png?raw=true" width="1200" />
+</p>
 
 <div style="text-align: center;">
 
