@@ -128,15 +128,6 @@ public class CompletionistStatueBlock extends Block {
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.is(newState.getBlock())) {
-            BlockPos otherPos = state.getValue(HALF) == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
-            BlockState otherState = level.getBlockState(otherPos);
-
-            if (otherState.is(this)) {
-                level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
-            }
-        }
-
         super.onRemove(state, level, pos, newState, moved);
     }
 

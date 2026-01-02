@@ -187,6 +187,7 @@ public interface PotteryParentModelGen {
         textures.addProperty("2", tex(prefix, "bud_vase_side"));
         textures.addProperty("3", soil());
         textures.addProperty("4", pattern("planter_pattern"));
+        textures.addProperty("5", tex(prefix, "planter_side"));
         textures.addProperty("particle", tex(prefix, "planter_tinted_side"));
         parentedTinted(modelGen, prefix, "planter", textures);
     }

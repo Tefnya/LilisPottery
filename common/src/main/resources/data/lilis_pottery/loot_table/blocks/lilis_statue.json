@@ -9,11 +9,9 @@
         },
         {
           "condition": "minecraft:block_state_property",
-          "predicate": {
-            "block": "lilis_pottery:lilis_statue",
-            "state": {
-              "half": "lower"
-            }
+          "block": "lilis_pottery:lilis_statue",
+          "properties": {
+            "half": "lower"
           }
         }
       ],
