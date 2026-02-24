@@ -92,21 +92,11 @@
   },
   "requirements": [
     [
-      "clay_ball"
-    ],
-    [
-      "red"
-    ],
-    [
-      "yellow"
-    ],
-    [
-      "white"
-    ],
-    [
-      "blue"
-    ],
-    [
+      "clay_ball",
+      "red",
+      "yellow",
+      "white",
+      "blue",
       "black"
     ]
   ]

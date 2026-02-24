@@ -19,7 +19,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -69,26 +73,31 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
         }
 
         if (stack.is(Items.HONEYCOMB)) {
+            int baseRgb = storageEntity.getSideColorRgb();
+            boolean canGlaze = baseRgb != 0 && storageEntity.getGlazeStrength() < 2.0f;
+
+            if (!canGlaze) {
+                return ItemInteractionResult.CONSUME;
+            }
+
             if (!world.isClientSide) {
-                int baseRgb = storageEntity.getSideColorRgb();
-                if (baseRgb != 0) {
-                    storageEntity.setGlazed(true);
-                    storageEntity.setGlazeColorRgb(baseRgb);
+                storageEntity.setGlazed(true);
+                storageEntity.setGlazeColorRgb(baseRgb);
 
-                    float nextStrength = storageEntity.getGlazeStrength() + 0.25f;
-                    if (nextStrength > 2.0f) {
-                        nextStrength = 2.0f;
-                    }
-                    storageEntity.setGlazeStrength(nextStrength);
+                float nextStrength = storageEntity.getGlazeStrength() + 0.25f;
+                if (nextStrength > 2.0f) {
+                    nextStrength = 2.0f;
+                }
+                storageEntity.setGlazeStrength(nextStrength);
 
-                    world.playSound(null, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+                world.playSound(null, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
-                    if (!player.isCreative()) {
-                        stack.shrink(1);
-                    }
+                if (!player.isCreative()) {
+                    stack.shrink(1);
                 }
             }
+
             return ItemInteractionResult.sidedSuccess(world.isClientSide);
         }
 
@@ -271,7 +280,6 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
-
     static DyeColor nearestDyeColor(int rgb) {
         DyeColor best = DyeColor.WHITE;
         int bestDistance = Integer.MAX_VALUE;
@@ -349,6 +357,4 @@ public abstract class AbstractStorageBlock extends AbstractFacingBlock implement
 
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
-
-
 }

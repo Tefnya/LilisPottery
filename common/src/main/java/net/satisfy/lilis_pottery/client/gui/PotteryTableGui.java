@@ -10,6 +10,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.satisfy.lilis_pottery.LilisPottery;
 import net.satisfy.lilis_pottery.core.inventory.PotteryTableScreenHandler;
 import net.satisfy.lilis_pottery.core.recipe.PotteringRecipe;
 
@@ -21,7 +22,7 @@ public class PotteryTableGui extends AbstractContainerScreen<PotteryTableScreenH
     private static final ResourceLocation RECIPE_SELECTED_SPRITE = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe_selected");
     private static final ResourceLocation RECIPE_HIGHLIGHTED_SPRITE = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe_highlighted");
     private static final ResourceLocation RECIPE_SPRITE = ResourceLocation.withDefaultNamespace("container/stonecutter/recipe");
-    private static final ResourceLocation TEXTURE = ResourceLocation.withDefaultNamespace("textures/gui/container/stonecutter.png");
+    private static final ResourceLocation TEXTURE = LilisPottery.identifier("textures/gui/pottery_table.png");
 
     private float scrollAmount;
     private boolean scrolling;
