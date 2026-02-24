@@ -1,27 +1,131 @@
 <p align="center">
-  <img src="https://github.com/Let-s-Do-Collection/LilisPottery/blob/main/LOGO.png?raw=true" width="1200" />
+  <img src="https://github.com/Let-s-Do-Collection/LilisPottery/blob/main/LOGO.png?raw=true" width="800" alt="Lili's Pottery logo">
 </p>
 
-<div style="text-align: center;">
+<br>
 
-<p>Feel the warmth of clay and fire. Lili’s Pottery brings handcrafted ceramics, glazing, and kiln firing into your world, turning simple clay into beautiful and functional creations.</p>
+<p align="center">
+  <strong>Earthen Forms & Timeless Craft</strong>
+</p>
 
-<br> 
+<p align="center">
+  <em>The artisanal chapter of the Let's Do collection</em>
+</p>
 
-<p>Shape raw clay at the pottery table, fire your work in the kiln, and create vases, pots, planters, and decorative blocks. From rustic earthenware to refined pieces, pottery becomes a creative and immersive craft.</p>
+<br>
+
+<p align="center">
+  <em>"From soil to sculpture"</em>
+</p>
+
+<br>
+
+Feel the warmth of clay and fire.
+
+<br>
+
+Lili’s Pottery transforms humble clay into handcrafted ceramics. Shape, glaze and fire your creations to bring natural elegance into your builds.
+
+<br>
+
+Slow down. Center the wheel. Let the kiln do its work.
+
+<br>
+
+## Clay from the Earth
+
+<br>
+
+- New clay variants found across different regions  
+- Distinct natural colors and textures  
+- Materials that reflect the land they come from  
+
+<br>
+
+Every piece begins with the soil.
+
+<br>
+
+## Shape & Fire
+
+<br>
+
+- Pottery Table for shaping raw forms  
+- Kiln for glazing and firing finished pieces  
+- A curated collection of pots, vases, planters and ceramic decor  
+
+<br>
+
+Precision in your hands. Patience in the flame.
+
+<br>
+
+## Decorative Expression
+
+<br>
+
+- Functional and ornamental ceramics  
+- Pieces that complement gardens, kitchens and interiors  
+- Subtle craftsmanship that elevates any space  
+
+<br>
+
+Crafted, not mass-produced.
+
+<br>
+
+<p align="center">
+  <strong>Shape the clay.</strong>
+</p>
+
+<p align="center">
+  <strong>Glaze with care.</strong>
+</p>
+
+<p align="center">
+  <strong>Let it harden in fire.</strong>
+</p>
+
+<br>
+
+<p align="center">
+  <em>Have fun working with clay, glaze and ceramic craft.</em>
+</p>
+
+<br>
+
+<p align="center">
+  <em>Dedicated to MissLilitu</em>
+</p>
+
+<br>
+
+<div align="center">
+
+# The Let’s Do Collection
+
+<br>
+
+<a href="https://lets-do.ch/mods/">
+  <img src="https://github.com/Let-s-Do-Collection/Let-s-Do-Collection/raw/main/LOGO.png?raw=true" width="350" alt="The Let’s Do Collection">
+</a>
+
+<br>
+
+# Support & Community
 
 </div>
 
-<h1 align="center">Be Part of Our Journey</h1>
+<br>
 
 <p align="center">
-    <a title="discord" href="https://discord.gg/Vqu6wYZwdZ">
-        <img style="display: block; margin-left: auto; margin-right: auto;" src="https://1000logos.net/wp-content/uploads/2021/06/Discord-logo-2015.png" alt="" width="" height="140" />
-    </a>
-    <a title="patreon" href="https://www.patreon.com/user?u=78595058">
-    <picture>
-      <source style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" media="(prefers-color-scheme: black)" srcset="https://i.ibb.co/4R738W0/patreon-logo-icon-170869-black.png">
-      <img style="display: block; margin-left: auto; margin-right: auto;" width="" height="140" alt="" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/patreon_logo_icon_170869.png">
-    </picture>
-    </a>
+  Let’s Do grows through its community.
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://github.com/Let-s-Do-Collection/Let-s-Do-Collection">GitHub</a> •
+  <a href="https://discord.gg/Jb2bgpYr">Discord</a> •
+  <a href="https://www.patreon.com/c/u78595058">Patreon</a>
 </p>
